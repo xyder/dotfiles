@@ -1,0 +1,9 @@
+vim/vim/.netrwhist
+
+dpkg.log
+
+# idea stuff
+.idea/
+
+# python stuff
+*.py[co]

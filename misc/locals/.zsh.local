@@ -1,0 +1,3 @@
+# set default user to shorten prompt
+export DEFAULT_USER='example@example'
+

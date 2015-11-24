@@ -1,0 +1,6 @@
+if [ -f $HOME/.bash_profile.alt ]; then
+    . $HOME/.bash_profile.alt
+fi
+
+# start x server
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

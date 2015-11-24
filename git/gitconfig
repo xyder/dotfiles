@@ -1,0 +1,6 @@
+[merge]
+    tool = meld
+
+[include]
+    path = ~/.gitconfig.local
+

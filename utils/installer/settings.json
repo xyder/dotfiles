@@ -1,0 +1,29 @@
+{
+  "path.symlinks": {
+    "": ["dotfiles"],
+    "shell": {
+      "zsh": {
+        "zprofile": [".zprofile"],
+        "zshrc": [".zshrc"]
+      },
+      "bash": {
+        "bashrc": [".bashrc"],
+        "bash_profile": [".bash_profile"]
+      }
+    },
+    "vim": {
+      "vimrc": [".vimrc"],
+      "plugins": [".vim", "plugins"]
+    },
+    "wm": {
+      "i3": [".i3"]
+    }
+  },
+  "packages.core": [
+    "xinit",
+    "i3-wm",
+    "i3status",
+    "zsh",
+    "suckless-tools"
+  ]
+}
