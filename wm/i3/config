@@ -192,9 +192,13 @@ bindsym $mod+Escape mode "$mode_system"
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-# mobility:
+# move focus:
 bindsym $mod+z focus left
 bindsym $mod+x focus right
+
+# move workspaces:
+bindsym $mod+comma exec --no-startup-id i3-msg 'move workspace to output left'
+bindsym $mod+period exec --no-startup-id i3-msg 'move workspace to output left'
 
 # default to floating
 # for_window [class="list_example.py" instance="list_example.py"] floating enable
@@ -206,7 +210,7 @@ exec --no-startup-id indicator-cpufreq
 exec --no-startup-id indicator-multiload
 exec --no-startup-id nm-applet
 
-exec --no-startup id i3-msg 'workspace 4; exec --no-startup-id thunderbird'
+# exec --no-startup id i3-msg 'workspace 5; exec --no-startup-id thunderbird'
 exec --no-startup-id i3-msg 'workspace 3; exec --no-startup-id skype'
 exec --no-startup-id i3-msg 'workspace 1;'
 exec --no-startup-id megasync
