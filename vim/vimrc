@@ -58,8 +58,11 @@ set softtabstop=4
 " show a visual line under the cursor's current line
 " set cursorline
 
-" show the matchign part of the pair for [], (), {}
+" show the matching part of the pair for [], (), {}
 set showmatch
+
+" set so long lines don't wrap around
+set nowrap
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
