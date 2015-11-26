@@ -88,8 +88,27 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+# =============================================================================
+qh() {
+    # function to show all commands in history that contain the given argument
+    # using --color=always to enable colors in the pipe
+    # using --color=auto only enables colors if the output is in the terminal
+    # using less with -R displays ANSI color sequences in raw form
+    # using less with -X to not clear the screen after quitting less
+    grep --color=always "$*" "$HISTFILE" | less -RX
+}
+
+qt() {
+    # function to seaerch for text in current directory
+    # using grep with -i to ignore case
+    # using grep with -r to search recursively
+    grep -ir --color=always "$*" . | less -RX
+}
+
 # custom stuff:
 autosuggest-toggle
+
 #   aliases:
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
@@ -121,6 +140,7 @@ alias pipf=$pip_cmd'freeze'
 alias pipl=$pip_cmd'list'
 
 alias gsall='git status -suall'
+alias gcts='git add -A; git commit -m "$(date)"'
 
 alias e='vim'
 alias c='clear'
