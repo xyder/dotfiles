@@ -70,6 +70,9 @@ let python_highlight_all = 1
 " set number of colors to 256. must be set before colorscheme
 set t_Co=256
 
+set wildmenu  " auto-complete for commands
+" set wildmode=longest,full  " customize how auto-complete for commands will work
+
 " set vim theme
 set background=dark
 
