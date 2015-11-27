@@ -139,11 +139,12 @@ alias pipd=$pip_cmd'uninstall'
 alias pipf=$pip_cmd'freeze'
 alias pipl=$pip_cmd'list'
 
-alias gsall='git status -suall'
-alias gcts='git add -A; git commit -m "$(date)"'
+# alias gsall='git status -suall'
+# alias gcts='git add -A; git commit -m "$(date)"'
 
 alias e='vim'
 alias c='clear'
+alias g='git'
 alias :q='exit'
 alias q='exit'
 # alias to shift a workspace in i3
