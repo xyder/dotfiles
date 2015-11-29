@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git alias-tips sh-syntax-highlighting zsh-autosuggestions)
+plugins=(git alias-tips zsh-syntax-highlighting zsh-autosuggestions)
 
 if [ -f $HOME/.zsh.local ]; then
     source $HOME/.zsh.local
