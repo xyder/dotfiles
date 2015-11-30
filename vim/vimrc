@@ -13,6 +13,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-fugitive'
 
 " plugin that can generate an airline-like tmux statusline
 "Plugin 'edkolev/tmuxline.vim'
@@ -94,10 +96,16 @@ set laststatus=2
 " ----------------------------------------------------------------------
 " | Mappings                                                   |
 " ----------------------------------------------------------------------
+" change the leader if needed
+" let mapleader = ','
 
 " save and run file
-map <F5> <Esc>:w<CR>:!%:p<CR>
+nmap <leader>s <Esc>:w<CR>:!%:p<CR>
 
+" toggle commenting using TComment
+nmap <leader>c :TComment<CR>
+
+nmap <leader>gd :Gvdiff<CR>
 
 " clear on exit
 " au VimLeave * :!clear
