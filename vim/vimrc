@@ -35,8 +35,8 @@ filetype plugin indent on    " required
 " enable syntax highlighting
 syntax enable
 
-" show line numbers
-set number
+" show line numbers. use 'number' for normal line numbering, 'relativenumber' for relative
+set relativenumber
 
 " set tabs to have 4 spaces
 set ts=4

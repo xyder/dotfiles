@@ -1,5 +1,5 @@
-if [ -f $HOME/.bashrc.alt ]; then
-    . $HOME/.bashrc.alt
+if [ -f $HOME/.bashrc.xbkp ]; then
+    . $HOME/.bashrc.xbkp
 fi
 
 # set terminal to xterm with 256 colors

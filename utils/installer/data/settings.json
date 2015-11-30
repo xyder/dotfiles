@@ -1,6 +1,9 @@
 {
   "path.symlinks": {
     "": ["dotfiles"],
+    "git": {
+      "gitconfig": [".gitconfig"]
+    },
     "shell": {
       "zsh": {
         "zprofile": [".zprofile"],
@@ -15,7 +18,7 @@
         "terminator": {
             "config": [".config", "terminator", "config"]
         }
-    }
+    },
     "vim": {
       "vimrc": [".vimrc"],
       "plugins": [".vim", "plugins"]
@@ -30,6 +33,10 @@
     "i3status",
     "zsh",
     "suckless-tools",
-    "terminator"
+    "terminator",
+    "python-pip",
+    "python3-pip",
+    "gitk",
+    "git-gui"
   ]
 }

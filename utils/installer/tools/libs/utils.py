@@ -1,6 +1,38 @@
 from enum import Enum
+import json
 import os
 import sys
+
+
+def load_settings(logger, root_path):
+    # prepare settings
+    settings = {
+        'path.settings': os.path.join(root_path, 'data', 'settings.json'),
+        'path.home': os.path.expanduser('~'),
+        'path.dotfiles': root_path[:root_path.rfind('dotfiles') + len('dotfiles')],
+        'path.root': root_path,
+        'path.installers': os.path.join(root_path, 'tools'),
+        'path.log_file': os.path.join(root_path, 'data', 'dpkg.log'),
+    }
+
+    # load settings file
+    try:
+        with open(settings['path.settings']) as settings_file:
+            settings.update(json.load(settings_file))
+    except IOError:
+        logger.die_with_msg('Settings file "%s" could not be read! Exiting...' % settings['path.settings'])
+
+    return settings
+
+
+def generic_setup(root_path):
+    logger = Logger()
+    settings = load_settings(logger, root_path)
+
+    if os.path.isfile(settings['path.log_file']):
+        os.remove(settings['path.log_file'])
+
+    return logger, settings
 
 
 class Logger(object):

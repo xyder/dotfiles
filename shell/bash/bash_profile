@@ -1,5 +1,5 @@
-if [ -f $HOME/.bash_profile.alt ]; then
-    . $HOME/.bash_profile.alt
+if [ -f $HOME/.bash_profile.xbkp ]; then
+    . $HOME/.bash_profile.xbkp
 fi
 
 # start x server

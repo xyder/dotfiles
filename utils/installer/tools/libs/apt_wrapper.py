@@ -1,6 +1,6 @@
 import os
 import apt
-from libs.utils import ConsoleCursor as cc, get_progress_bar, Logger
+from .utils import get_progress_bar, Logger, ConsoleCursor as cc
 
 
 class CustomAcquireProgress(apt.progress.base.AcquireProgress):
@@ -74,3 +74,7 @@ class AptManager(object):
             self._cache.commit(CustomAcquireProgress(), cip)
         except Exception as e:
             self._logger.error('Packages "%s" failed to install: %s' % (', '.join(marked_packages), e))
+            return
+
+        for package in marked_packages:
+            self._logger.info('Package "%s" successfully installed.' % package)
