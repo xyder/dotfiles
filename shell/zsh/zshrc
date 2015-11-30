@@ -109,6 +109,22 @@ qt() {
 # custom stuff:
 autosuggest-toggle
 
+# MOTD
+line=$(printf '%*s' "$(tput cols)" | tr ' ' '~')
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+user=$(whoami)
+user=$(tr '[:lower:]' '[:upper:]' <<< ${user:0:1})${user:1}
+echo $line
+echo "    Hello, ${bold}$user${normal}!"
+echo $line
+echo "    Time\t: $(date +"%T %P %Z - %a, %e %b %G - week %V.")"
+echo "    Uptime\t: "${"$(uptime -p)":3}
+echo $line
+echo "    Local IP\t: $(hostname -I)"
+echo "    External IP\t: $(dig +short myip.opendns.com @resolver1.opendns.com)"
+echo $line
 #   aliases:
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
