@@ -1,42 +1,49 @@
 {
-  "path.symlinks": {
-    "": ["dotfiles"],
-    "git": {
-      "gitconfig": [".gitconfig"]
-    },
-    "shell": {
-      "zsh": {
-        "zprofile": [".zprofile"],
-        "zshrc": [".zshrc"]
+  "paths": {
+    "symlinks": {
+      "": ["~", "dotfiles"],
+      "git": {
+        "gitconfig": ["~", ".gitconfig"]
       },
-      "bash": {
-        "bashrc": [".bashrc"],
-        "bash_profile": [".bash_profile"]
-      }
-    },
-    "terminals": {
-        "terminator": {
-            "config": [".config", "terminator", "config"]
+      "shell": {
+        "zsh": {
+          "zprofile": ["~", ".zprofile"],
+          "zshrc": ["~", ".zshrc"]
+        },
+        "bash": {
+          "bashrc": ["~", ".bashrc"],
+          "bash_profile": ["~", ".bash_profile"]
         }
-    },
-    "vim": {
-      "vimrc": [".vimrc"],
-      "plugins": [".vim", "plugins"]
-    },
-    "wm": {
-      "i3": [".i3"]
+      },
+      "terminals": {
+        "terminator": {
+          "config": ["~", ".config","terminator","config"]
+        }
+      },
+      "vim": {
+        "vimrc": ["~", ".vimrc"],
+        "plugins": ["~", ".vim","plugins"]
+      },
+      "wm": {
+        "i3": ["~", ".i3"]
+      }
     }
   },
-  "packages.core": [
-    "xinit",
-    "i3-wm",
-    "i3status",
-    "zsh",
-    "suckless-tools",
-    "terminator",
-    "python-pip",
-    "python3-pip",
-    "gitk",
-    "git-gui"
-  ]
+  "packages": {
+    "core": [
+      "xinit",
+      "i3-wm",
+      "i3status",
+      "zsh",
+      "suckless-tools",
+      "terminator",
+      "python-pip",
+      "python3-pip",
+      "gitk",
+      "git-gui"
+    ]
+  },
+  "repositories": {
+
+  }
 }

@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.5
 
 import os
 import sys
 import subprocess
-from tools.libs.utils import generic_setup
+from tools.libs.utils import generic_setup, explode
 
 
 def call_script(path, sudo=False, die_on_error=True):
@@ -15,7 +15,7 @@ def call_script(path, sudo=False, die_on_error=True):
 
 
 def call_install_script(script_file, settings, sudo=False, die_on_error=True):
-    call_script(os.path.join(settings['path.installers'], script_file), sudo=sudo, die_on_error=die_on_error)
+    call_script(explode(settings['paths']['installers'], script_file), sudo=sudo, die_on_error=die_on_error)
 
 
 def main():
@@ -24,6 +24,7 @@ def main():
 
     call_install_script('install_apps.py', settings, sudo=True)
     call_install_script('setup_files.py', settings)
+    call_install_script('install_repos.py', settings)
 
 
 if __name__ == '__main__':

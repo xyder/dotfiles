@@ -4,23 +4,33 @@ import os
 import sys
 
 
+def explode(*args):
+    return os.path.abspath(os.path.expandvars(os.path.expanduser(os.path.join(*args))))
+
+
 def load_settings(logger, root_path):
     # prepare settings
     settings = {
-        'path.settings': os.path.join(root_path, 'data', 'settings.json'),
-        'path.home': os.path.expanduser('~'),
-        'path.dotfiles': root_path[:root_path.rfind('dotfiles') + len('dotfiles')],
-        'path.root': root_path,
-        'path.installers': os.path.join(root_path, 'tools'),
-        'path.log_file': os.path.join(root_path, 'data', 'dpkg.log'),
+        'paths': {
+            'settings': os.path.join(root_path, 'data', 'settings.json'),
+            'home': os.path.expanduser('~'),
+            'dotfiles': root_path[:root_path.rfind('dotfiles') + len('dotfiles')],
+            'root': root_path,
+            'installers': os.path.join(root_path, 'tools'),
+            'log_file': os.path.join(root_path, 'data', 'dpkg.log'),
+        },
     }
 
     # load settings file
     try:
-        with open(settings['path.settings']) as settings_file:
-            settings.update(json.load(settings_file))
+        with open(explode(settings['paths']['settings'])) as settings_file:
+            external = json.load(settings_file)
+            if 'paths' in external:
+                settings['paths'].update(external['paths'])
+            external.pop('paths')
+            settings.update(external)
     except IOError:
-        logger.die_with_msg('Settings file "%s" could not be read! Exiting...' % settings['path.settings'])
+        logger.die_with_msg('Settings file "%s" could not be read! Exiting...' % settings['paths']['settings'])
 
     return settings
 
@@ -29,8 +39,9 @@ def generic_setup(root_path):
     logger = Logger()
     settings = load_settings(logger, root_path)
 
-    if os.path.isfile(settings['path.log_file']):
-        os.remove(settings['path.log_file'])
+    path = explode(settings['paths']['log_file'])
+    if os.path.isfile(path):
+        os.remove(os.path.abspath(path))
 
     return logger, settings
 

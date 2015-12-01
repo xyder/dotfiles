@@ -1,18 +1,18 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.5
 
 import os
 from libs import AptManager
-from libs.utils import generic_setup
+from libs.utils import generic_setup, explode
 
 
 def install_apps(logger, settings):
     logger.info('Section "core": Installing applications..')
     logger.die_for_sudo()
 
-    am = AptManager(logger, log_file=settings['path.log_file'])
+    am = AptManager(logger, log_file=explode(settings['paths']['log_file']))
 
-    logger.info('Installing packages: %s.' % ', '.join(settings['packages.core']))
-    am.install_packages(settings['packages.core'])
+    logger.info('Installing packages: %s.' % ', '.join(settings['packages']['core']))
+    am.install_packages(settings['packages']['core'])
 
 
 def main():
