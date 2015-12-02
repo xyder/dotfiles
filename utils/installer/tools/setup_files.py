@@ -3,7 +3,7 @@
 import os
 import shutil
 import errno
-from libs.utils import generic_setup, explode
+from libs.utils import generic_setup, explode, parse_args
 
 
 def symlink(logger, target, link_path, target_is_directory=False, forced=True):
@@ -63,6 +63,7 @@ def create_symlinks(logger, settings, path=None, val=None, dry_run=False):
 
 
 def main():
+    args = parse_args()
     my_path = os.path.dirname(os.path.realpath(__file__))
     # go up one level
     my_path = os.path.dirname(my_path)

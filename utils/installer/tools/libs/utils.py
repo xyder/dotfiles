@@ -1,3 +1,4 @@
+import argparse
 from enum import Enum
 import json
 import os
@@ -45,6 +46,14 @@ def generic_setup(root_path):
 
     return logger, settings
 
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dry-run', action='store_true', help='Only simulate actions.')
+    args = parser.parse_args()
+    return {
+        'dry_run': args.dry_run or False
+    }
 
 class Logger(object):
     labels = ['I', 'E', 'W', 'F']

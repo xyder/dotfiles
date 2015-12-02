@@ -2,7 +2,7 @@
 
 import os
 from libs import AptManager
-from libs.utils import generic_setup, explode
+from libs.utils import generic_setup, explode, parse_args
 
 
 def install_apps(logger, settings):
@@ -16,6 +16,7 @@ def install_apps(logger, settings):
 
 
 def main():
+    args = parse_args
     my_path = os.path.dirname(os.path.realpath(__file__))
     # go up one level
     my_path = os.path.dirname(my_path)
