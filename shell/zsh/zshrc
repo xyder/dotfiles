@@ -134,6 +134,9 @@ echo "    Local IP\t| $(hostname -I)"
 # echo "    External IP\t: $(dig +short myip.opendns.com @resolver1.opendns.com)"
 echo $line
 
+# alias-tips:
+export ZSH_PLUGINS_ALIAS_TIPS_EXPAND=1
+
 #   aliases:
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
