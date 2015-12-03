@@ -1,0 +1,15 @@
+# alias template for a github host
+# use a remote url similar to this:
+# git@alias_gh:username/repository.git
+Host alias_gh
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/ssh_gh_identity
+
+# alias template for a bitbucket host
+# use a remote url similar to this:
+# git@alias_bb:username/repository.git
+Host alias_bb
+    HostName bitbucket.org
+    IdentityFile ~/.ssh/ssh_bb_identity
+
