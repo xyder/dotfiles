@@ -19,7 +19,7 @@
     l       = log
     p       = push
     pf      = push -f
-    pl      = pull
+    pl      = pull --rebase
     rsh     = reset --hard HEAD~1                           # remove last commit completely
     rsm     = reset --mixed HEAD~1                          # undo last commit and keep changes as unstaged
     rss     = reset --soft HEAD~1                           # undo last commit and keep changes as staged
