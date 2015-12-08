@@ -25,18 +25,16 @@ def symlink(logger, target, link_path, target_is_directory=False, forced=True):
             logger.die_with_msg('[OSError] %s. Exiting... ' % e.strerror)
 
 
-def backup_file(src):
-    # only backup if source file exists and is not a symlink
-    if os.path.exists(src) and not os.path.islink(src) and os.path.isfile(src):
-        shutil.copy2(src, os.path.abspath(src) + '.xbkp')
-
-
 def create_backups(logger, settings):
     logger.empty()
     logger.info('Backing up some files if necessary..')
 
-    backup_file(os.path.join(explode('~', '.bashrc')))
-    backup_file(os.path.join(explode('~', '.bash_profile')))
+    for backup in settings['backups']:
+        src = explode(*backup)
+        # only backup if source file exists and is not a symlink already
+        if os.path.exists(src) and not os.path.islink(src) and os.path.isfile(src):
+            logger.info('Backing up "%s".' % src)
+            shutil.copy2(src, os.path.abspath(src) + '.xbkp')
 
 
 def create_symlinks(logger, settings, path=None, val=None, dry_run=False):

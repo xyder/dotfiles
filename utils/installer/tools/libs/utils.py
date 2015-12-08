@@ -9,6 +9,36 @@ def explode(*args):
     return os.path.abspath(os.path.expandvars(os.path.expanduser(os.path.join(*args))))
 
 
+def locate_path(settings, *args):
+    """
+    Builds a path from an array. It appends a root if specified path is not relative.
+    :param settings: The settings repository from which  the root is taken.
+    :param args: Path elements which will be used to build the path.
+    :return: The resulting path.
+    """
+
+    if args:
+        if args[0] in ['/', '~', '$HOME']:
+            return explode(*args)
+        else:
+            return explode(settings['paths']['dotfiles'], *args)
+    return None
+
+
+def get_script_path(settings, script_name):
+    """
+    Lookup function for script_name. The result will be the full path of the associated script.
+    :param settings: The settings repository.
+    :param script_name: The label of the script for which the path will be retrieved from the settings repository.
+    :return: The full path of the script associated with script_name.
+    """
+
+    path = []
+    path.extend(settings['scripts']['root'])
+    path.extend(settings['scripts'][script_name])
+    return locate_path(settings, *path)
+
+
 def load_settings(logger, root_path):
     # prepare settings
     settings = {

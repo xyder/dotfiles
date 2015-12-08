@@ -1,9 +1,10 @@
 #!/usr/bin/env python3.5
+from functools import partial
 
 import os
 import sys
 import subprocess
-from tools.libs.utils import generic_setup, explode, parse_args
+from tools.libs.utils import generic_setup, explode, parse_args, locate_path, get_script_path
 
 
 def call_script(path, args=[], sudo=False, die_on_error=True):
@@ -26,9 +27,11 @@ def main():
     my_path = os.path.dirname(os.path.realpath(__file__))
     logger, settings = generic_setup(my_path)
 
-    # call_install_script('install_apps.py', settings, args=cmd_args, sudo=True)
-    # call_install_script('setup_files.py', settings, args=cmd_args)
-    call_install_script('install_repos.py', settings, args=cmd_args)
+    gsp = partial(get_script_path, settings)
+
+    call_install_script(gsp('apps'), settings, args=cmd_args, sudo=True)
+    call_install_script(gsp('files'), settings, args=cmd_args)
+    call_install_script(gsp('repos'), settings, args=cmd_args)
 
 if __name__ == '__main__':
     main()

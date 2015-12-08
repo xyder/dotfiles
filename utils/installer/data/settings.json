@@ -1,4 +1,14 @@
 {
+  "backups": [
+    ["~", ".bashrc"],
+    ["~", ".bash_profile"]
+  ],
+  "scripts": {
+    "root": ["utils", "installer", "tools"],
+    "apps": ["install_apps.py"],
+    "files": ["setup_files.py"],
+    "repos": ["install_repos.py"]
+  },
   "packages": {
     "core": [
       "xinit",

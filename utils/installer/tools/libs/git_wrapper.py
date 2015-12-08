@@ -35,7 +35,6 @@ class GitManager(object):
             if os.path.isdir(destination) and not os.path.islink(destination):
                 shutil.rmtree(destination)
             else:
-                print('PING')
                 os.remove(destination)
 
         os.makedirs(destination)
