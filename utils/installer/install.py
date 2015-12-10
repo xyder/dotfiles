@@ -4,7 +4,7 @@ from functools import partial
 import os
 import sys
 import subprocess
-from tools.libs.utils import generic_setup, explode, parse_args, locate_path, get_script_path
+from tools.libs.utils import generic_setup, explode, parse_args, get_script_path
 
 
 def call_script(path, args=[], sudo=False, die_on_error=True):
@@ -21,11 +21,18 @@ def call_install_script(script_file, settings, args=[], sudo=False, die_on_error
 
 def main():
     args = parse_args()
+
+    if not args['root_path']:
+        root_path = os.path.dirname(os.path.realpath(__file__))
+    else:
+        root_path = args['root_path']
+
+    logger, settings = generic_setup(root_path)
+
     cmd_args = []
     if args['dry_run']:
         cmd_args += ['--dry-run']
-    my_path = os.path.dirname(os.path.realpath(__file__))
-    logger, settings = generic_setup(my_path)
+    cmd_args += ['--root-path', root_path]
 
     gsp = partial(get_script_path, settings)
 

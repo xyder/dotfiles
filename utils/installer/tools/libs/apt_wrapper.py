@@ -54,7 +54,7 @@ class AptManager(object):
         # re-open to use the new cache
         cache.open(None)
 
-    def install_packages(self, packages):
+    def install_packages(self, packages, dry_run=False):
         marked_packages = []
         for package in packages:
             if package in self._cache:
@@ -67,7 +67,8 @@ class AptManager(object):
                 self._logger.info('Package "%s" is already installed.' % package)
             else:
                 marked_packages.append(package)
-                pkg.mark_install()
+                if not dry_run:
+                    pkg.mark_install()
 
         cip = CustomInstallProgress(log_file=self._log_file, logger=self._logger)
         try:

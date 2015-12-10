@@ -25,7 +25,7 @@ def symlink(logger, target, link_path, target_is_directory=False, forced=True):
             logger.die_with_msg('[OSError] %s. Exiting... ' % e.strerror)
 
 
-def create_backups(logger, settings):
+def create_backups(logger, settings, dry_run=False):
     logger.empty()
     logger.info('Backing up some files if necessary..')
 
@@ -34,7 +34,8 @@ def create_backups(logger, settings):
         # only backup if source file exists and is not a symlink already
         if os.path.exists(src) and not os.path.islink(src) and os.path.isfile(src):
             logger.info('Backing up "%s".' % src)
-            shutil.copy2(src, os.path.abspath(src) + '.xbkp')
+            if not dry_run:
+                shutil.copy2(src, os.path.abspath(src) + '.xbkp')
 
 
 def create_symlinks(logger, settings, path=None, val=None, dry_run=False):
@@ -61,15 +62,12 @@ def create_symlinks(logger, settings, path=None, val=None, dry_run=False):
 
 
 def main():
-    args = parse_args()
-    my_path = os.path.dirname(os.path.realpath(__file__))
-    # go up one level
-    my_path = os.path.dirname(my_path)
+    args = parse_args(required_root_path=True)
 
-    logger, settings = generic_setup(my_path)
+    logger, settings = generic_setup(args['root_path'])
 
     create_backups(logger, settings)
-    create_symlinks(logger, settings)
+    create_symlinks(logger, settings, dry_run=args['dry_run'])
 
 
 if __name__ == '__main__':

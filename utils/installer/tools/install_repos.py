@@ -1,16 +1,18 @@
 #!/usr/bin/env python3.5
 from libs.git_wrapper import GitManager
-import os
 from libs.utils import generic_setup, parse_args
 
 
-def main():
-    args = parse_args()
-    my_path = os.path.dirname(os.path.realpath(__file__))
-    # go up one level
-    my_path = os.path.dirname(my_path)
+def clone_repos():
+    pass
 
-    logger, settings = generic_setup(my_path)
+
+def main():
+    args = parse_args(required_root_path=True)
+
+    logger, settings = generic_setup(args['root_path'])
+
+    clone_repos()
 
     # GitManager.clone_repo('xyder', 'dotfiles', os.path.expanduser('~/test'))
 

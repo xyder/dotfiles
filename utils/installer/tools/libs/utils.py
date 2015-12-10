@@ -77,13 +77,16 @@ def generic_setup(root_path):
     return logger, settings
 
 
-def parse_args():
+def parse_args(required_root_path=False):
     parser = argparse.ArgumentParser()
     parser.add_argument('--dry-run', action='store_true', help='Only simulate actions.')
+    parser.add_argument('--root-path', required=required_root_path, help='Specify the root path.')
     args = parser.parse_args()
     return {
-        'dry_run': args.dry_run or False
+        'dry_run': args.dry_run or False,
+        'root_path': args.root_path or None
     }
+
 
 class Logger(object):
     labels = ['I', 'E', 'W', 'F']
