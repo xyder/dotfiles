@@ -66,7 +66,7 @@ def main():
 
     logger, settings = generic_setup(args['root_path'])
 
-    create_backups(logger, settings)
+    create_backups(logger, settings, dry_run=args['dry_run'])
     create_symlinks(logger, settings, dry_run=args['dry_run'])
 
 

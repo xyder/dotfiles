@@ -54,11 +54,11 @@
     }
   },
   "repositories": [
-    ["git", "github", "VundleVim", "Vundle.vim", ["~", ".vim", "plugins", "Vundle.vim"]],
-    ["git", "github", "robbyrussell", "oh-my-zsh", ["~", ".oh-my-zsh"]],
-    ["git", "github", "tarruda", "zsh-autosuggestions", ["~", ".oh-my-zsh", "custom", "plugins"]],
-    ["git", "github", "zsh-users", "zsh-syntax-highlighting", ["~", ".oh-my-zsh", "custom", "plugins"]],
-    ["git", "github", "djui", "alias-tips", ["~", ".oh-my-zsh", "custom", "plugins"]],
-    ["git", "github", "powerline", "fonts", ["~", "tmp", "fonts"]]
+    ["git", "github.com", "VundleVim", "Vundle.vim", ["~", ".vim", "plugins", "Vundle.vim"]],
+    ["git", "github.com", "robbyrussell", "oh-my-zsh", ["~", ".oh-my-zsh"]],
+    ["git", "github.com", "tarruda", "zsh-autosuggestions", ["~", ".oh-my-zsh", "custom", "plugins"]],
+    ["git", "github.com", "zsh-users", "zsh-syntax-highlighting", ["~", ".oh-my-zsh", "custom", "plugins"]],
+    ["git", "github.com", "djui", "alias-tips", ["~", ".oh-my-zsh", "custom", "plugins"]],
+    ["git", "github.com", "powerline", "fonts", ["~", "tmp-fonts"]]
   ]
 }
