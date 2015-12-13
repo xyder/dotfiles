@@ -5,6 +5,7 @@ import os
 import shutil
 import sys
 import subprocess
+import pip
 from tools.libs.utils import generic_setup, explode, parse_args, get_script_path
 
 
@@ -40,6 +41,7 @@ def main():
     gsp = partial(get_script_path, settings)
 
     call_install_script(gsp('apps'), settings, args=cmd_args, sudo=True)
+    pip.main(['install', 'gitpython'])
     call_install_script(gsp('files'), settings, args=cmd_args)
     call_install_script(gsp('repos'), settings, args=cmd_args)
 
