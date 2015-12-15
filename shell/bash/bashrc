@@ -9,3 +9,7 @@ fi
 #     export TERM='xterm-color'
 # fi
 
+if [ -z $OVERRIDE ] && [ "$SHELL" = "/bin/bash" ]; then
+    exec zsh;
+fi
+

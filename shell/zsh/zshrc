@@ -110,6 +110,11 @@ lss() {
     find $1 -maxdepth 1 -type l -ls
 }
 
+no-zsh() {
+    export OVERRIDE=1
+    exec bash
+}
+
 
 # custom stuff:
 autosuggest-toggle
