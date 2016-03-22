@@ -100,7 +100,7 @@ qh() {
 }
 
 qt() {
-    # function to seaerch for text in current directory
+    # function to search for text in current directory
     # using grep with -i to ignore case
     # using grep with -r to search recursively
     grep -ir --color=always "$*" . | less -RX
@@ -117,7 +117,8 @@ no-zsh() {
 
 
 # custom stuff:
-autosuggest-toggle
+# old version of zsh-autosuggestions required this
+# autosuggest-toggle
 
 # MOTD
 line=$(printf '%*s' "$(tput cols)" | tr ' ' '=')
