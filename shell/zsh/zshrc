@@ -115,6 +115,23 @@ no-zsh() {
     exec bash
 }
 
+wf() {
+    echo $#
+    if [[ "$1" == "s" && $# -eq 2 ]]; then
+        sudo less +F "$2"
+    else
+        less +F "$1"
+    fi
+}
+
+tf() {
+    echo $#
+    if [[ "$1" == "s" && $# -eq 2 ]]; then
+        sudo tail -f "$2"
+    else
+        tail -f "$1"
+    fi
+}
 
 # custom stuff:
 # old version of zsh-autosuggestions required this

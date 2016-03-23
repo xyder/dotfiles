@@ -11,18 +11,36 @@
     a       = add -A
     ac      = !git add -A && git commit                     # commit all changes
     b       = branch
+
     c       = commit
     ca      = commit --amend
-    cts     = !git add -A && git commit -m \"$(date)\"        # commit all with a timestamp as message
+
+    co      = checkout
+    cob     = checkout -b
+    cod     = checkout .
+
+    cts     = commit -m \"$(date)\"                         # commit with a timestamp as message
+    ctsa    = !git add -A && git commit -m \"$(date)\"      # commit all with a timestamp as message
+    ctsap   = !git add -A && git commit -m \"$(date)\" && git push
+                                                            # commit all and push with a timestamp as message
     d       = diff
     dc      = diff --cached
+
+    f       = fetch
     l       = log
+
     p       = push
     pf      = push -f
+
     pl      = pull --rebase
-    rsh     = reset --hard HEAD~1                           # remove last commit completely
-    rsm     = reset --mixed HEAD~1                          # undo last commit and keep changes as unstaged
-    rss     = reset --soft HEAD~1                           # undo last commit and keep changes as staged
+
+    rs      = remote show                                   # used to get info about remotes
+    rv      = remote -v                                     # show configured upstreams
+
+    rsth    = reset --hard HEAD~1                           # remove last commit completely
+    rstm    = reset --mixed HEAD~1                          # undo last commit and keep changes as unstaged
+    rsts    = reset --soft HEAD~1                           # undo last commit and keep changes as staged
+
     s       = status
     sa      = status -suall                                 # show all changes
 
