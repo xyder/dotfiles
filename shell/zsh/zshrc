@@ -165,7 +165,10 @@ echo $line
 # alias-tips:
 export ZSH_PLUGINS_ALIAS_TIPS_EXPAND=1
 
-#   aliases:
+
+# options:
+setopt extended_glob
+# aliases:
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
 s_apt_cmd='_ '$apt_cmd
@@ -188,6 +191,10 @@ alias aptl=$cache_cmd'pkgnames'  # lists packages. can also search with it.
 alias aptinfo=$cache_cmd'show'  # show info for package
 alias aptdep=$cache_cmd'showpkg' # check dependecies
 alias aptstat=$cache_cmd'stats'
+
+alias ssha='eval `ssh-agent -s`'
+alias sshl='ssh-add -l'
+alias sshal='ssh-add $HOME/.ssh/^(*.pub|known_hosts|config)'
 
 pip_cmd='pip '
 alias pipa=$pip_cmd'install'
