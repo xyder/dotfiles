@@ -45,4 +45,5 @@
     sa      = status -suall                                 # show all changes
 
     sbur    = submodule update --recursive                  # update all submodules recursively
+    sburi   = submodule update --recursive --init           # init and update all submodules recursively
 
