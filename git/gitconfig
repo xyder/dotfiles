@@ -42,7 +42,8 @@
     rsts    = reset --soft HEAD~1                           # undo last commit and keep changes as staged
 
     s       = status
-    sa      = status -suall                                 # show all changes
+    sa      = status -su                                    # show all changes
+                                                            # equivalent to: git status -suall
 
     sbur    = submodule update --recursive                  # update all submodules recursively
     sburi   = submodule update --recursive --init           # init and update all submodules recursively
