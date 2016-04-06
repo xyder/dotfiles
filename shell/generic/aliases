@@ -1,0 +1,48 @@
+#!/usr/bin/zsh
+
+# aliases:
+apt_cmd='apt-get '
+cache_cmd='apt-cache '
+s_apt_cmd='_ '$apt_cmd
+
+alias apti=$s_apt_cmd'install'
+alias aptr=$s_apt_cmd'remove'
+alias aptp=$s_apt_cmd'purge'  # completely removes packages
+
+alias aptc=$s_apt_cmd'clean'
+alias aptchk=$s_apt_cmd'check'
+
+alias aptu=$s_apt_cmd'update'
+alias aptU=$s_apt_cmd'upgrade'
+alias aptuU='aptu && aptU'
+
+alias apts=$cache_cmd'search'
+alias aptsn='apts --names-only'
+alias aptl=$cache_cmd'pkgnames'  # lists packages. can also search with it.
+
+alias aptinfo=$cache_cmd'show'  # show info for package
+alias aptdep=$cache_cmd'showpkg' # check dependecies
+alias aptstat=$cache_cmd'stats'
+
+alias ssha='eval `ssh-agent -s`'
+alias sshl='ssh-add -l'
+alias sshal='ssh-add $HOME/.ssh/^(*.pub|known_hosts|config)'
+
+pip_cmd='pip '
+alias pipa=$pip_cmd'install'
+alias pipd=$pip_cmd'uninstall'
+alias pipf=$pip_cmd'freeze'
+alias pipl=$pip_cmd'list'
+
+alias e='vim'
+alias c='clear'
+alias g='git'
+alias :q='exit'
+alias q='exit'
+
+# alias to shift a workspace in i3
+alias shiftws='i3-msg move workspace to output'
+
+# python related
+alias python='python3'
+alias pip='pip3'
