@@ -24,9 +24,12 @@ alias aptinfo=$cache_cmd'show'  # show info for package
 alias aptdep=$cache_cmd'showpkg' # check dependecies
 alias aptstat=$cache_cmd'stats'
 
-alias ssha='eval `ssh-agent -s`'
+ssh_agent='eval `ssh-agent -s`'
+ssh_add_all='ssh-add $HOME/.ssh/^(*.pub|known_hosts|config)'
+alias ssha=$ssh_agent
 alias sshl='ssh-add -l'
-alias sshal='ssh-add $HOME/.ssh/^(*.pub|known_hosts|config)'
+alias sshad=$ssh_add_all
+alias sshaa=$ssh_agent' && '$ssh_add_all
 
 pip_cmd='pip '
 alias pipa=$pip_cmd'install'

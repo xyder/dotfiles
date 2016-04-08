@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git alias-tips zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(vi-mode git alias-tips zsh-syntax-highlighting zsh-autosuggestions)
 
 if [ -f $HOME/.zsh.local ]; then
     source $HOME/.zsh.local
@@ -172,3 +172,8 @@ setopt extended_glob
 if [ -f $HOME/.aliases ]; then
     source $HOME/.aliases
 fi
+
+# vim-like mode stuff
+bindkey -v
+export KEYTIMEOUT=1  # kill the delay when pressing ESC
+
