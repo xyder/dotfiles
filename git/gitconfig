@@ -5,7 +5,7 @@
     path = ~/.gitconfig.local
 
 [push]
-	default = simple
+    default = simple
 
 [alias]
     a       = add -A
@@ -25,6 +25,9 @@
                                                             # commit all and push with a timestamp as message
     d       = diff
     dc      = diff --cached
+
+    dt      = diff-tree --no-commit-id --name-status -r     # show a list of changed files for the specified revision
+    dth     = diff-tree --no-commit-id --name-status -r HEAD# show a list of changed files for the HEAD
 
     f       = fetch
     l       = log
@@ -47,4 +50,15 @@
 
     sbur    = submodule update --recursive                  # update all submodules recursively
     sburi   = submodule update --recursive --init           # init and update all submodules recursively
+
+    uph     = log @{u}..                                    # show unpushed commits on current branch
+    uphl    = log --branches --not --remotes                # show unpushed commits on all branches (long)
+    uphs    = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
+                                                            # show unpushed commits on all branches (short)
+
+    upl     = !git fetch && git log ..@{u}                  # show unpulled commits on current branch
+    upll    = !git fetch && git log --remotes --not --branches
+                                                            # show unpulled commits on all branches (long)
+    upls    = !git fetch && git log --remotes --not --branches --simplify-by-decoration --decorate --oneline
+                                                            # show unpulled commits on all branches (short)
 
