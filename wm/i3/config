@@ -189,14 +189,21 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 # workspaces:
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Shift+z workspace prev
+bindsym $mod+Shift+x workspace next
 
 # move focus:
 bindsym $mod+z focus left
 bindsym $mod+x focus right
 
-# move workspaces:
+# move window within workspace:
+bindsym $mod+Shift+comma move left
+bindsym $mod+Shift+period move right
+
+# move workspaces left or right:
+# TODO: add commands to move workspace left and right
+
+# move workspaces to different output:
 bindsym $mod+comma exec --no-startup-id i3-msg 'move workspace to output left'
 bindsym $mod+period exec --no-startup-id i3-msg 'move workspace to output left'
 
