@@ -193,6 +193,7 @@ mode "$mode_system" {
 }
 bindsym $mod+Escape mode "$mode_system"
 
+bindsym $mod+q exec --no-startup-id i3lock -c 000000
 # workspaces:
 bindsym $mod+Shift+z workspace prev
 bindsym $mod+Shift+x workspace next
