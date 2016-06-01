@@ -29,13 +29,14 @@
     dt      = diff-tree --no-commit-id --name-status -r     # show a list of changed files for the specified revision
     dth     = diff-tree --no-commit-id --name-status -r HEAD# show a list of changed files for the HEAD
 
-    f       = fetch
+    f       = fetch --all
     l       = log
 
     p       = push
     pf      = push -f
 
     pl      = pull --rebase
+    plf     = !git fetch --all && git reset --hard origin   # fetch and reset forcefully at origin head
 
     rs      = remote show                                   # used to get info about remotes
     rv      = remote -v                                     # show configured upstreams
@@ -56,9 +57,9 @@
     uphs    = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
                                                             # show unpushed commits on all branches (short)
 
-    upl     = !git fetch && git log ..@{u}                  # show unpulled commits on current branch
-    upll    = !git fetch && git log --remotes --not --branches
+    upl     = !git fetch --all && git log ..@{u}            # show unpulled commits on current branch
+    upll    = !git fetch --all && git log --remotes --not --branches
                                                             # show unpulled commits on all branches (long)
-    upls    = !git fetch && git log --remotes --not --branches --simplify-by-decoration --decorate --oneline
+    upls    = !git fetch --all && git log --remotes --not --branches --simplify-by-decoration --decorate --oneline
                                                             # show unpulled commits on all branches (short)
 
