@@ -36,7 +36,8 @@
     pf      = push -f
 
     pl      = pull --rebase
-    plf     = !git fetch --all && git reset --hard origin   # fetch and reset forcefully at origin head
+    plf     = !git fetch --all && git reset --hard          # fetch and reset forcefully.
+                                                            # add 'origin/branch_name' after to specify the branch
 
     rs      = remote show                                   # used to get info about remotes
     rv      = remote -v                                     # show configured upstreams
