@@ -1,1 +1,4 @@
 set relativenumber
+set visualbell
+set noerrorbells
+

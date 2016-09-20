@@ -23,8 +23,10 @@ let python_highlight_all = 1    " enable all Python syntax highlighting features
 set t_Co=256                    " set number of colors to 256. must be
                                 " set before colorscheme
 set wildmenu                    " auto-complete for commands
-set wildmode=longest,full     " customize how auto-complete for
+set wildmode=longest,full       " customize how auto-complete for
                                 " commands will work
+set visualbell                  " set visual flashing on error
+set noerrorbells                " disable PC beep on error
 
 
 

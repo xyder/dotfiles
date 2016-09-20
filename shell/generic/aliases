@@ -47,5 +47,4 @@ alias q='exit'
 alias shiftws='i3-msg move workspace to output'
 
 # python related
-alias python='python3'
-alias pip='pip3'
+alias pip='python -m pip'
