@@ -15,6 +15,19 @@
 *.o
 *.so
 
+# Certificates and keys #
+#########################
+*.pub
+*.crt
+*.cert
+*.key
+*.csr
+
+# Node stuff #
+##############
+node_modules/
+npm_debug.log
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
