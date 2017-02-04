@@ -23,6 +23,8 @@
 *.cert
 *.key
 *.csr
+*.pem
+*.pfx
 
 # Node stuff #
 ##############
