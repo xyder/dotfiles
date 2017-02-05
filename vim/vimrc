@@ -27,6 +27,7 @@ set wildmode=longest,full       " customize how auto-complete for
                                 " commands will work
 set visualbell                  " set visual flashing on error
 set noerrorbells                " disable PC beep on error
+set showcmd                     " show entered command or number of selected chars/lines at the bottom
 
 
 
