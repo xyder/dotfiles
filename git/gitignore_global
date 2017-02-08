@@ -52,7 +52,6 @@ npm_debug.log
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite[3]
 
 # OS generated files #
