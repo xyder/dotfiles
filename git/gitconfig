@@ -36,7 +36,8 @@
     p       = push
     pf      = push -f
 
-    pl      = pull --rebase
+    pl      = pull
+    plr     = pull --rebase
     plf     = !git fetch --all && git reset --hard          # fetch and reset forcefully.
                                                             # add 'origin/branch_name' after to specify the branch
 
