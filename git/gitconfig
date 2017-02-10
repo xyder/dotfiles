@@ -16,6 +16,8 @@
     c       = commit
     ca      = commit --amend
 
+    cc      = shortlog -sn                                  # commit count
+
     co      = checkout
     cob     = checkout -b
     cod     = checkout .
