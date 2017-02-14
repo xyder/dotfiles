@@ -173,6 +173,18 @@ if [ -f $HOME/.aliases ]; then
     source $HOME/.aliases
 fi
 
+# load virtualenvwrapper if exists
+venvw_path=$(which virtualenvwrapper.sh)
+if [ -f $venvw_path ]; then
+    # uncomment this to set a custom virtualenv path
+    # export WORKON_HOME=/path/to/virtualenv
+
+    echo "Loading VirtualEnvWrapper [$venvw_path] ..."
+    source $venvw_path
+else
+    echo 'WARNING: virtualenvwrapper not found/loaded.'
+fi
+
 # vim-like mode stuff
 bindkey -v
 export KEYTIMEOUT=1  # kill the delay when pressing ESC
