@@ -38,6 +38,7 @@ alias pipf=$pip_cmd'freeze'
 alias pipl=$pip_cmd'list'
 
 alias e='vim'
+alias clear='echo -en "\ec"'
 alias c='clear'
 alias g='git'
 alias :q='exit'
