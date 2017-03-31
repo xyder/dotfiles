@@ -55,8 +55,8 @@
     sa      = status -su                                    # show all changes
                                                             # equivalent to: git status -suall
 
-    sbur    = submodule update --recursive                  # update all submodules recursively
-    sburi   = submodule update --recursive --init           # init and update all submodules recursively
+    sbur    = submodule update --recursive --remote         # update all submodules recursively, allow custom remotes
+    sburi   = submodule update --recursive --remote --init  # init and update all submodules recursively, allow custom remotes
 
     uph     = log @{u}..                                    # show unpushed commits on current branch
     uphl    = log --branches --not --remotes                # show unpushed commits on all branches (long)
