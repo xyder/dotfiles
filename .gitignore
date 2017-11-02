@@ -3,6 +3,8 @@ vim/vim/.netrwhist
 wm/i3/config.save
 utils/installer/dpkg.log
 
+# virtualenvs
+players/mpsyt/.venv
 
 # idea stuff
 .idea/

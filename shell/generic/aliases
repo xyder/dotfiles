@@ -43,6 +43,7 @@ alias c='clear'
 alias g='git'
 alias :q='exit'
 alias q='exit'
+alias ytp='$HOME/dotfiles/players/mpsyt/start.zsh'
 
 # alias to shift a workspace in i3
 alias shiftws='i3-msg move workspace to output'
