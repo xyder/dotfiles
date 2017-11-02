@@ -33,7 +33,6 @@
     dth     = diff-tree --no-commit-id --name-status -r HEAD# show a list of changed files for the HEAD
 
     f       = fetch --all
-    l       = log
 
     p       = push
     pf      = push -f
@@ -51,21 +50,29 @@
     rstm    = reset --mixed HEAD~1                          # undo last commit and keep changes as unstaged
     rsts    = reset --soft HEAD~1                           # undo last commit and keep changes as staged
 
+# status aliases
     s       = status
     sa      = status -su                                    # show all changes
                                                             # equivalent to: git status -suall
-
+# submodules aliases
     sbur    = submodule update --recursive --remote         # update all submodules recursively, allow custom remotes
     sburi   = submodule update --recursive --remote --init  # init and update all submodules recursively, allow custom remotes
 
-    uph     = log @{u}..                                    # show unpushed commits on current branch
-    uphl    = log --branches --not --remotes                # show unpushed commits on all branches (long)
-    uphs    = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
+# log aliases
+    l       = log
+    lga     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --date-order --all
+                                                            # show a colored commit tree for all refs
+    lgc     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --date-order
+                                                            # show a colored commit tree for the current branch
+
+    lupsc   = log @{u}..                                    # show unpushed commits on current branch
+    lupsl   = log --branches --not --remotes                # show unpushed commits on all branches (long)
+    lupss   = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
                                                             # show unpushed commits on all branches (short)
 
-    upl     = !git fetch --all && git log ..@{u}            # show unpulled commits on current branch
-    upll    = !git fetch --all && git log --remotes --not --branches
+    luplc   = !git fetch --all && git log ..@{u}            # show unpulled commits on current branch
+    lupll   = !git fetch --all && git log --remotes --not --branches
                                                             # show unpulled commits on all branches (long)
-    upls    = !git fetch --all && git log --remotes --not --branches --simplify-by-decoration --decorate --oneline
+    lupls   = !git fetch --all && git log --remotes --not --branches --simplify-by-decoration --decorate --oneline
                                                             # show unpulled commits on all branches (short)
 
