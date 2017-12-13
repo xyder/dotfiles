@@ -63,3 +63,7 @@ npm_debug.log
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# celery
+celerybeat-schedule
+

@@ -94,6 +94,12 @@ fi
 
 
 # =============================================================================
+cdl() {
+    # function to change directory and also list all items in it
+    cd $@
+    ls -a
+}
+
 qh() {
     # function to show all commands in history that contain the given argument
     # using --color=always to enable colors in the pipe
@@ -155,13 +161,23 @@ echo "\t|╚═╝░░╚═╝╚═════╝░╚══════�
 
 user=$(whoami)
 user=$(tr '[:lower:]' '[:upper:]' <<< ${user:0:1})${user:1}
+
+if [[ $OSTYPE == darwin* ]]; then
+    uptime=$(uptime)
+    hostname='(not scripted)'
+    
+else
+    uptime=$(uptime -p)
+    hostname=$(hostname -I)
+fi
+
 echo $line
 echo "    Hello, ${bold}$user${normal}!"
 echo $line
 echo "    Time\t| $(date +"%T %P %Z - %a, %e %b %G - week %V.")"
-echo "    Uptime\t| "${"$(uptime -p)":3}
+echo "    Uptime\t| "$uptime
 echo $line
-echo "    Local IP\t| $(hostname -I)"
+echo "    Local IP\t| $hostname"
 # disabled for speed considerations
 # echo "    External IP\t: $(dig +short myip.opendns.com @resolver1.opendns.com)"
 echo $line
