@@ -55,6 +55,8 @@ ZSH_CUSTOM=~/dotfiles/shell/zsh/custom
 #
 plugins=(git alias-tips zsh-syntax-highlighting zsh-autosuggestions)
 
+DISABLE_MOTD="false"
+
 if [ -f $HOME/.zsh.local ]; then
     source $HOME/.zsh.local
 fi
@@ -151,25 +153,27 @@ tf() {
 line=$(printf '%*s' "$(tput cols)" | tr ' ' '=')
 bold=$(tput bold)
 normal=$(tput sgr0)
-echo $line
-echo "\t|██╗░░██╗██████╗░███████╗░░░████████╗|"
-echo "\t|╚██╗██╔╝██╔══██╗██╔════╝██╗╚══██╔══╝|"
-echo "\t|░╚███╔╝░██║░░██║███████╗╚═╝░░░██║░░░|"
-echo "\t|░██╔██╗░██║░░██║╚════██║██╗░░░██║░░░|"
-echo "\t|██╔╝░██╗██████╔╝███████║╚═╝░░░██║░░░|"
-echo "\t|╚═╝░░╚═╝╚═════╝░╚══════╝░░░░░░╚═╝░░░|"
+
+show_motd() {
+    echo $line
+    echo "\t|██╗░░██╗██████╗░███████╗░░░████████╗|"
+    echo "\t|╚██╗██╔╝██╔══██╗██╔════╝██╗╚══██╔══╝|"
+    echo "\t|░╚███╔╝░██║░░██║███████╗╚═╝░░░██║░░░|"
+    echo "\t|░██╔██╗░██║░░██║╚════██║██╗░░░██║░░░|"
+    echo "\t|██╔╝░██╗██████╔╝███████║╚═╝░░░██║░░░|"
+    echo "\t|╚═╝░░╚═╝╚═════╝░╚══════╝░░░░░░╚═╝░░░|"
+}
+
+if [[ $DISABLE_MOTD == "false" ]] ; then
+    show_motd
+fi
 
 user=$(whoami)
 user=$(tr '[:lower:]' '[:upper:]' <<< ${user:0:1})${user:1}
 
-if [[ $OSTYPE == darwin* ]]; then
-    uptime=$(uptime)
-    hostname='(not scripted)'
-    
-else
-    uptime=$(uptime -p)
-    hostname=$(hostname -I)
-fi
+uptime=$(uptime -p 2>/dev/null || uptime)
+hostname=$(hostname -I 2>/dev/null || echo '(not available)')
+
 
 echo $line
 echo "    Hello, ${bold}$user${normal}!"
