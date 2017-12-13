@@ -54,6 +54,13 @@
     s       = status
     sa      = status -su                                    # show all changes
                                                             # equivalent to: git status -suall
+
+# stash aliases
+    stl     = stash list
+    sts     = stash save
+    stp     = stash pop
+    std     = stash drop
+
 # submodules aliases
     sbur    = submodule update --recursive --remote         # update all submodules recursively, allow custom remotes
     sburi   = submodule update --recursive --remote --init  # init and update all submodules recursively, allow custom remotes
