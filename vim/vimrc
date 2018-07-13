@@ -43,6 +43,8 @@ call vundle#begin('~/.vim/plugins')
     " let Vundle manage Vundle, required
     Plugin 'VundleVim/Vundle.vim'
 
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'bling/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
@@ -88,13 +90,45 @@ let g:airline_theme = 'base16'
 set laststatus=2
 
 
+" NERDTree config
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+"    \ "Ignored"   : "☒",
+
+
+" open nerdtree when a file is opened
+autocmd vimenter * NERDTree | wincmd p
+
+
+" open nerdtree even if no file is opened
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+
+" open nerdtree into a blank file if the target is a dir
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+
+" close vim when nerdtree is the last window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
 highlight ColorColumn ctermbg=235
 " highlight CursorLine ctermbg=235
 
 " ----------------------------------------------------------------------
 " | Mappings                                                   |
 " ----------------------------------------------------------------------
-" change the leader if needed
+" change the leader if needed. default leader: \
 " let mapleader = ','
 
 " save and run file
@@ -108,3 +142,17 @@ nmap <leader>gd :Gvdiff<CR>
 " clear on exit
 " au VimLeave * :!clear
 
+" toggle NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+
+" start NERDTree with leader+f
+nnoremap <silent> <leader>f :NERDTreeFind<CR>
+
+" switch to NERDTree
+" nnoremap <silent><expr> <leader>t winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>"
+nnoremap <silent> <leader>t :NERDTreeFocus<CR>
+
+" move to next window
+nnoremap <silent> <leader>w <C-w>w
+" move to previous window
+nnoremap <silent> <leader>p <C-w>p

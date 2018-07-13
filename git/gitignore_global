@@ -67,3 +67,6 @@ Thumbs.db
 # celery
 celerybeat-schedule
 
+# various
+worker.pid
+

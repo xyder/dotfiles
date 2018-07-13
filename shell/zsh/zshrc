@@ -145,6 +145,10 @@ tf() {
     fi
 }
 
+pidport() {
+    lsof -ti :$1
+}
+
 # custom stuff:
 # old version of zsh-autosuggestions required this
 # autosuggest-toggle
