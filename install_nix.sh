@@ -6,7 +6,7 @@
 # htop
 # python
 
-rm -fr ~/.vim ~/.dotfiles ~/.oh-my-zsh
+rm -fr ~/.vim ~/dotfiles ~/.oh-my-zsh
 
 # download dotfiles
 git clone https://github.com/xyder/dotfiles.git ~/dotfiles
