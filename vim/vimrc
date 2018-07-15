@@ -156,3 +156,16 @@ nnoremap <silent> <leader>t :NERDTreeFocus<CR>
 nnoremap <silent> <leader>w <C-w>w
 " move to previous window
 nnoremap <silent> <leader>p <C-w>p
+
+" fix for screen+vim arrows weirdness
+" if &term =~ '^screen'
+"     " tmux will send xterm-style keys when its xterm-keys option is on
+"     execute "set <xUp>=\e[1;*A"
+"     execute "set <xDown>=\e[1;*B"
+"     execute "set <xRight>=\e[1;*C"
+"     execute "set <xLeft>=\e[1;*D"
+" endif
+
+" more natural splits
+set splitbelow
+set splitright
