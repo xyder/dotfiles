@@ -57,10 +57,6 @@ plugins=(git alias-tips zsh-syntax-highlighting zsh-autosuggestions)
 
 DISABLE_MOTD="false"
 
-if [ -f $HOME/.zsh.local ]; then
-    source $HOME/.zsh.local
-fi
-
 # User configuration
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -218,4 +214,8 @@ bindkey -v
 # bindkey "^R" history-incremental-pattern-search-backward
 
 export KEYTIMEOUT=1  # kill the delay when pressing ESC
+
+if [ -f $HOME/.zsh.local ]; then
+    source $HOME/.zsh.local
+fi
 
