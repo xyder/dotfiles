@@ -61,6 +61,8 @@ alias tm='tmux'
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
 
+
+alias zreload='source ~/.zshrc'
 # alias to shift a workspace in i3
 alias shiftws='i3-msg move workspace to output'
 
