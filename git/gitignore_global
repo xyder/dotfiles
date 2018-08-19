@@ -9,6 +9,8 @@ ZLF_*
 
 # Python related #
 ##################
+venv/
+.venv/
 *.py[co]
 
 # Compiled source #
