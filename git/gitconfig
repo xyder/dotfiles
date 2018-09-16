@@ -69,6 +69,7 @@
     sburi   = submodule update --recursive --remote --init  # init and update all submodules recursively, allow custom remotes
 
 # log aliases
+    lss     = shortlog -nes
     l       = log
     lga     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --date-order --all
                                                             # show a colored commit tree for all refs
