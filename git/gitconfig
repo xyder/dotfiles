@@ -2,6 +2,9 @@
     editor = vim
     excludesfile = ~/.gitignore_global
 
+[mailmap]
+    file = ZLF_mailmap
+
 [include]
     path = ~/.gitconfig.local
 
