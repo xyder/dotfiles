@@ -141,6 +141,22 @@ tf() {
     fi
 }
 
+enc() {
+    echo "Encrypting file: $1"
+    cp "$1" "$1.tmp"
+    openssl bf-cbc -a -salt -in "$1" -out "$1.tmp"
+    rm "$1"
+    mv "$1.tmp" "$1"
+}
+
+dec() {
+    echo "Decrypting file: $1"
+    cp $1 $1.tmp
+    openssl bf-cbc -d -a -in $1 -out $1.tmp
+    rm $1
+    mv $1.tmp $1
+}
+
 pidport() {
     lsof -ti :$1
 }
@@ -192,6 +208,7 @@ export ZSH_PLUGINS_ALIAS_TIPS_EXPAND=1
 
 # options:
 setopt extended_glob
+setopt histignorespace
 
 if [ -f $HOME/.aliases ]; then
     source $HOME/.aliases

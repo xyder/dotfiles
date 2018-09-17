@@ -28,7 +28,10 @@ set wildmode=longest,full       " customize how auto-complete for
 set visualbell                  " set visual flashing on error
 set noerrorbells                " disable PC beep on error
 set showcmd                     " show entered command or number of selected chars/lines at the bottom
-set cm=blowfish2                " set crypt method
+
+if has('cm')
+    set cm=blowfish2                " set crypt method
+endif
 
 
 

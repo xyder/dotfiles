@@ -25,9 +25,9 @@
     cob     = checkout -b
     cod     = checkout .
 
-    cts     = commit -m \"$(date)\"                         # commit with a timestamp as message
-    ctsa    = !git add -A && git commit -m \"$(date)\"      # commit all with a timestamp as message
-    ctsap   = !git add -A && git commit -m \"$(date)\" && git push
+    cts     = commit -m \"Auto-commit: $(date)\"                         # commit with a timestamp as message
+    ctsa    = !git add -A && git commit -m \"Auto-commit: $(date)\"      # commit all with a timestamp as message
+    ctsap   = !git add -A && git commit -m \"Auto-commit: $(date)\" && git push
                                                             # commit all and push with a timestamp as message
     d       = diff
     dc      = diff --cached

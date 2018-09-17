@@ -38,9 +38,12 @@ cd ~
 rm -fr ~/temp_fonts
 
 # install tmux
-ln -s ~/dotfiles/tmux/tmuxline-snapshot ~/tmuxline-snapshot
-ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/tmux/tmuxline-snapshot ~/tmuxline-snapshot
+ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # install pgcli
-ln -s ~/dotfiles/pgcli/config ~/.config/pgcli/config
+mkdir ~/.config/pgcli
+ln -sf ~/dotfiles/pgcli/config ~/.config/pgcli/config
+
+echo 'Install complete!'
 

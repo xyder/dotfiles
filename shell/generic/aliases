@@ -48,7 +48,7 @@ alias pipd=$pip_cmd'uninstall'
 alias pipf=$pip_cmd'freeze'
 alias pipl=$pip_cmd'list'
 
-alias e='vim'
+alias e='nvim'
 alias clear='echo -en "\ec"'
 alias clr='clear'
 alias c='clear'
