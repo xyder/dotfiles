@@ -3,7 +3,6 @@
 # #### aliases:
 
 # ### apt aliases:
-
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
 s_apt_cmd='_ '$apt_cmd
@@ -42,12 +41,38 @@ alias sshl='ssh-add -l'
 alias sshad=$ssh_add_all
 alias sshaa=$ssh_agent' && '$ssh_add_all
 
+# ### pip aliases
 pip_cmd='pip '
 alias pipa=$pip_cmd'install'
 alias pipd=$pip_cmd'uninstall'
 alias pipf=$pip_cmd'freeze'
 alias pipl=$pip_cmd'list'
 
+# ### tmux aliases
+alias txm='tmux'
+alias txl='tmux ls'
+alias txn='tmux new -s'
+alias txa='tmux attach -t'
+
+# ### docker aliases
+dk_cmd='docker'
+dkc_cmd='docker-compose'
+alias dk=$dk_cmd
+alias dkb=$dk_cmd' build'
+
+alias dk-ci=$dk_cmd' container inspect'  # todo: create function that pipes in less
+alias dk-cls=$dk_cmd' container ls -a'
+
+alias dk-idang=$dk_cmd' images -f "dangling=true"'
+alias dk-iclr=$dk_cmd" rmi $(dk-idang -q)"
+alias dk-ils=$dk_cmd' images ls -a'
+
+alias dk-l=$dk_cmd' logs -tf --tail'
+
+alias dkc=$dkc_cmd
+alias dkc-upd=$dkc_cmd' up -d'
+
+# ### other aliases
 alias e='nvim'
 alias clear='echo -en "\ec"'
 alias clr='clear'
@@ -56,11 +81,6 @@ alias g='git'
 alias :q='exit'
 alias q='exit'
 alias ytp='$HOME/dotfiles/players/mpsyt/start.zsh'
-
-alias txm='tmux'
-alias txl='tmux ls'
-alias txn='tmux new -s'
-alias txa='tmux attach -t'
 
 
 alias zreload='source ~/.zshrc'

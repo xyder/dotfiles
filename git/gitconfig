@@ -68,6 +68,7 @@
 # submodules aliases
     sbur    = submodule update --recursive --remote         # update all submodules recursively, allow custom remotes
     sburi   = submodule update --recursive --remote --init  # init and update all submodules recursively, allow custom remotes
+    sbufi   = submodule update --recursive -f --init        # reset all recursively
 
 # log aliases
     lss     = shortlog -nes

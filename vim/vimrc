@@ -54,6 +54,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'editorconfig/editorconfig-vim'
 
     " plugin that can generate an airline-like tmux statusline
     "Plugin 'edkolev/tmuxline.vim'
