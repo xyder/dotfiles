@@ -174,3 +174,4 @@ nnoremap <silent> <leader>p <C-w>p
 " more natural splits
 set splitbelow
 set splitright
+

@@ -5,6 +5,7 @@ utils/installer/dpkg.log
 
 # virtualenvs
 players/mpsyt/.venv
+sys-venv/
 
 # idea stuff
 .idea/

@@ -161,6 +161,19 @@ pidport() {
     lsof -ti :$1
 }
 
+startp() {
+    expected=$HOME/dotfiles/sys-venv/bin/activate 
+    if [ -f $expected ]; then
+        source $expected
+    else
+        echo "WARNING: Default system venv not found @ '$expected'"
+    fi
+}
+
+stopp() {
+    deactivate
+}
+
 # custom stuff:
 # old version of zsh-autosuggestions required this
 # autosuggest-toggle
@@ -235,4 +248,7 @@ export KEYTIMEOUT=1  # kill the delay when pressing ESC
 if [ -f $HOME/.zsh.local ]; then
     source $HOME/.zsh.local
 fi
+
+# start the system python env if defined
+startp
 
