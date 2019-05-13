@@ -1,5 +1,28 @@
 #!/usr/bin/zsh
 
+# useful commands: ############################
+# rg - ripgrep - alternative to grep
+# pgcli - alternative to psql
+# tig - git viewer and manager
+# autojump.rs - cd with learning feature. install standard autojump before
+#     for extra functionality not covered by the rust port
+# #############################################
+
+dotfiles_dir=$HOME'/dotfiles'
+zsh_dir=$dotfiles_dir'/shell/zsh'
+gen_shell_dir=$dotfiles_dir'/shell/generic'
+git_dir=$dotfiles_dir'/git'
+
+# functions ###################################
+sal() {
+  rg --color=always --heading --no-ignore \
+    $gen_shell_dir/aliases \
+    $git_dir/gitconfig \
+    -SLne "$*" | pypager
+}
+# #############################################
+
+
 # #### aliases:
 
 # ### apt aliases:
@@ -72,8 +95,10 @@ alias dk-l=$dk_cmd' logs -tf --tail'
 alias dkc=$dkc_cmd
 alias dkc-upd=$dkc_cmd' up -d'
 
+
 # ### other aliases
 alias e='nvim'
+alias vim='nvim'
 alias clear='echo -en "\ec"'
 alias clr='clear'
 alias c='clear'
@@ -94,4 +119,3 @@ alias pym='source $MAIN_VENV/activate && source $MAIN_VENV/virtualenvwrapper.sh'
 # alias python=python3
 # alias virtualenv='python -m virtualenv'
 # alias pip='python -m pip'
-
