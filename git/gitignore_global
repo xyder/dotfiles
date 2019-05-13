@@ -12,6 +12,8 @@ ZLF_*
 venv/
 .venv/
 *.py[co]
+venv/
+.venv/
 
 # Compiled source #
 ###################

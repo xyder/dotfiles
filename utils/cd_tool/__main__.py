@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import os
+import sys
 
 import argparse
 import json
@@ -22,6 +23,12 @@ class Options(Enum):
     LIST = '-l'
     DELETE = '-d'
     GET = None
+
+
+class Commands(Enum):
+    GOTO = 'cd {}'
+    EDIT = 'e {}'
+    PRINT = '{}'
 
 
 class Registry:
@@ -148,7 +155,11 @@ def main():
     try:
         ret = reg.option(**args)
         if ret:
-            print(ret)
+            path = Path(ret)
+            if path.is_file():
+                return Commands.EDIT.value.format(ret)
+            else:
+                return Commands.GOTO.value.format(ret)
 
     except RegistryException as e:
         print(f'ERROR: {" ".join(e.args)}')
@@ -156,5 +167,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sys.stdout.write(main())
 
