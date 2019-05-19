@@ -1,279 +1,120 @@
-ZSH_DISABLE_COMPFIX=true
+ #!/usr/bin/env zsh
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# Set up the prompt
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+# autoload -Uz promptinit
+# promptinit
+# prompt adam1
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+setopt histignorealldups sharehistory
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# HISTSIZE=1000
+# SAVEHIST=1000
+HISTFILE=~/.zsh_history
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# Use modern completion system
+autoload -Uz compinit
+compinit
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# load global env
+source $HOME/dotfiles/shell/zsh/global_env.zsh
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/dotfiles/shell/zsh/custom
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins:
-# - vi-mode - vi mode for omz -- first in list
-# - zsh-syntax-highlighting - fish-like syntax highlight - last in line
-#
-plugins=(git alias-tips zsh-syntax-highlighting zsh-autosuggestions)
-
-DISABLE_MOTD="false"
-
-# User configuration
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
-
-if [ -f $ZSH/oh-my-zsh.sh ]; then
-    source $ZSH/oh-my-zsh.sh
+if ! [ -d $DOTFILES_DIR ]; then
+  # can only happen if using a different directory
+  echo "WARN: Dotfiles dir could not be found."
+  return -1
 fi
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# load custom functions
+source $ZSH_CONFIG_DIR/functions.zsh
 
 
-# =============================================================================
-cdl() {
-    # function to change directory and also list all items in it
-    cd $@
-    ls -a
-}
-
-qh() {
-    # function to show all commands in history that contain the given argument
-    # using --color=always to enable colors in the pipe
-    # using --color=auto only enables colors if the output is in the terminal
-    # using less with -R displays ANSI color sequences in raw form
-    # using less with -X to not clear the screen after quitting less
-    grep --color=always "$*" "$HISTFILE" | less -RX
-}
-
-qt() {
-    # function to search for text in current directory
-    # using grep with -i to ignore case
-    # using grep with -r to search recursively
-    grep -ir --color=always "$*" . | less -RX
-}
-
-lss() {
-    find $1 -maxdepth 1 -type l -ls
-}
-
-no-zsh() {
-    export OVERRIDE=1
-    exec bash
-}
-
-wf() {
-    echo $#
-    if [[ "$1" == "s" && $# -eq 2 ]]; then
-        sudo less +F "$2"
-    else
-        less +F "$1"
-    fi
-}
-
-tf() {
-    echo $#
-    if [[ "$1" == "s" && $# -eq 2 ]]; then
-        sudo tail -f "$2"
-    else
-        tail -f "$1"
-    fi
-}
-
-enc() {
-    echo "Encrypting file: $1"
-    cp "$1" "$1.tmp"
-    openssl bf-cbc -a -salt -in "$1" -out "$1.tmp"
-    rm "$1"
-    mv "$1.tmp" "$1"
-}
-
-dec() {
-    echo "Decrypting file: $1"
-    cp $1 $1.tmp
-    openssl bf-cbc -d -a -in $1 -out $1.tmp
-    rm $1
-    mv $1.tmp $1
-}
-
-pidport() {
-    lsof -ti :$1
-}
-
-startp() {
-    expected=$HOME/dotfiles/sys-venv/bin/activate 
-    if [ -f $expected ]; then
-        source $expected
-    else
-        echo "WARNING: Default system venv not found @ '$expected'"
-    fi
-}
-
-stopp() {
-    deactivate
-}
-
-# git stuff
-gbloc() {
-    git branch -vv | cut -c 3- | awk '$3 !~/\[/ { print $1 }'
-}
-
-gbdm() {
-    git branch --merged | grep -v \* | xargs git branch -D
-}
-
-
-# custom stuff:
-# old version of zsh-autosuggestions required this
-# autosuggest-toggle
-
-# MOTD
-line=$(printf '%*s' "$(tput cols)" | tr ' ' '=')
-bold=$(tput bold)
-normal=$(tput sgr0)
-
-show_motd() {
-    echo $line
-    echo "\t|██╗░░██╗██████╗░███████╗░░░████████╗|"
-    echo "\t|╚██╗██╔╝██╔══██╗██╔════╝██╗╚══██╔══╝|"
-    echo "\t|░╚███╔╝░██║░░██║███████╗╚═╝░░░██║░░░|"
-    echo "\t|░██╔██╗░██║░░██║╚════██║██╗░░░██║░░░|"
-    echo "\t|██╔╝░██╗██████╔╝███████║╚═╝░░░██║░░░|"
-    echo "\t|╚═╝░░╚═╝╚═════╝░╚══════╝░░░░░░╚═╝░░░|"
-}
-
-if [[ $DISABLE_MOTD == "false" ]] ; then
-    show_motd
+# load local env if it exists
+if [ -f $HOME/local_env.zsh ]; then
+  source $HOME/local_env.zsh  # TODO: create a function to source_if_exist_with_opt_warn
 fi
 
-user=$(whoami)
-user=$(tr '[:lower:]' '[:upper:]' <<< ${user:0:1})${user:1}
+if ! check_command git FATAL ; then
+  return -1
+fi
 
-uptime=$(uptime -p 2>/dev/null || uptime)
-hostname=$(hostname -I 2>/dev/null || echo '(not available)')
+if check_command figlet INFO ; then
+  show_banner
+fi
+
+# check usual apps
+check_command rg
+check_command autojump
+check_command fzf
+check_command docker INFO 0
+check_command nvim
+check_command make
+check_command tig
+check_command pypager
+check_command pgcli
 
 
-echo $line
-echo "    Hello, ${bold}$user${normal}!"
-echo $line
-echo "    Time\t| $(date +"%T %P %Z - %a, %e %b %G - week %V.")"
-echo "    Uptime\t| "$uptime
-echo $line
-echo "    Local IP\t| $hostname"
-# disabled for speed considerations
-# echo "    External IP\t: $(dig +short myip.opendns.com @resolver1.opendns.com)"
-echo $line
+if ! [ -d $SPACEVIM_CHECK_DIR ]; then
+  echo "WARN: SpaceVim is not installed. Install using 'install_spacevim' and run 'SPUpdate' if needed."
+fi
 
-# alias-tips:
-export ZSH_PLUGINS_ALIAS_TIPS_EXPAND=1
 
+# load aliases
+source $DOTFILES_DIR/shell/generic/aliases
+
+
+# install zplug
+if ! [ -d $ZPLUG_HOME ]; then
+  git clone https://github.com/zplug/zplug $ZPLUG_HOME
+fi
+
+# load zplug config
+source $ZSH_CONFIG_DIR/zplugrc
 
 # options:
-setopt extended_glob
-setopt histignorespace
+setopt histignorespace  # history ignores commands that start with space
 
-if [ -f $HOME/.aliases ]; then
-    source $HOME/.aliases
-fi
-
-# load virtualenvwrapper if exists
-# venvw_path=$(which virtualenvwrapper.sh)
-# if [ -f $venvw_path ]; then
-#     # uncomment this to set a custom virtualenv path
-#     # export WORKON_HOME=/path/to/virtualenv
-# 
-#     echo "Loading VirtualEnvWrapper [$venvw_path] ..."
-#     source $venvw_path
-# else
-#     echo 'WARNING: virtualenvwrapper not found/loaded.'
-# fi
-
-# vim-like mode stuff
-bindkey -v
-# bindkey "^R" history-incremental-pattern-search-backward
-
-export KEYTIMEOUT=1  # kill the delay when pressing ESC
-
-if [ -f $HOME/.zsh.local ]; then
-    source $HOME/.zsh.local
-fi
-
-# enable autojump
-source /usr/share/autojump/autojump.sh
+# enable autojump. TODO: perhaps not needed?
+# TODO: create install command for autojump + autojump.rs
+# source /usr/share/autojump/autojump.sh
 
 # sys envs
-export PATH="/home/xyder/.cargo/bin:$PATH"
-# required for autojump.rs to work properly
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
+export PATH="$HOME/.cargo/bin:$PATH"
+# required for autojump to work properly
+# export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
 
 
 # start the system python env if defined
 startp
 
-
-
+# install completion for bash
 autoload -U +X bashcompinit && bashcompinit
+
+# install completion for consul
 complete -o nospace -C /usr/bin/consul consul
+

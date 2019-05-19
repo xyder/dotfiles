@@ -25,6 +25,10 @@ sal() {
 
 # #### aliases:
 
+# ### generic aliases:
+alias history="history 0"
+
+
 # ### apt aliases:
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
@@ -80,20 +84,25 @@ alias txa='tmux attach -t'
 # ### docker aliases
 dk_cmd='docker'
 dkc_cmd='docker-compose'
-alias dk=$dk_cmd
-alias dkb=$dk_cmd' build'
+alias dk="$dk_cmd"
+alias dkb="$dk_cmd build"
 
-alias dk-ci=$dk_cmd' container inspect'  # todo: create function that pipes in less
-alias dk-cls=$dk_cmd' container ls -a'
+alias dk-ci="$dk_cmd container inspect"  # todo: create function that pipes in less
+alias dk-cls="$dk_cmd container ls -a"
 
-alias dk-idang=$dk_cmd' images -f "dangling=true"'
-alias dk-iclr=$dk_cmd" rmi $(dk-idang -q)"
-alias dk-ils=$dk_cmd' images ls -a'
+alias dk-idang="$dk_cmd images -f \"dangling=true\""
 
-alias dk-l=$dk_cmd' logs -tf --tail'
+_docker_clear_images() {
+  $dk_cmd rmi $(dk-idang -q)
+}
+
+alias dk-iclr=$_docker_clear_images
+alias dk-ils="$dk_cmd images ls -a"
+
+alias dk-l="$dk_cmd logs -tf --tail"
 
 alias dkc=$dkc_cmd
-alias dkc-upd=$dkc_cmd' up -d'
+alias dkc-upd="$dkc_cmd up -d"
 
 
 # ### other aliases

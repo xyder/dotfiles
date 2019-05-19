@@ -1,0 +1,53 @@
+#!/usr/bin/env zsh
+
+source $HOME/.zplug/init.zsh
+
+# self manage
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+# oh-my-zsh plugins
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/pip", from:oh-my-zsh
+zplug "plugins/autojump", from:oh-my-zsh
+zplug "plugins/cargo", from:oh-my-zsh
+zplug "plugins/celery", from:oh-my-zsh
+zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "plugins/dircycle", from:oh-my-zsh
+zplug "plugins/dirhistory", from:oh-my-zsh
+zplug "plugins/django", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/docker-compose", from:oh-my-zsh
+zplug "plugins/extract", from:oh-my-zsh
+# zplug "plugins/git-auto-fetch", from:oh-my-zsh
+zplug "plugins/git-prompt", from:oh-my-zsh
+zplug "plugins/rust", from:oh-my-zsh
+# zplug "plugins/ssh-agent", from:oh-my-zsh
+zplug "plugins/sudo", from:oh-my-zsh
+zplug "plugins/tmux", from:oh-my-zsh
+zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/ubuntu", from:oh-my-zsh
+
+# git plugins
+zplug "djui/alias-tips"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions", defer:3
+zplug "zsh-users/zsh-history-substring-search", defer:3  # load zsh-syntax-highlighting before this one
+
+# themes
+# zplug "agnoster/agnoster-zsh-theme", as:theme
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, as:theme
+
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+  printf "Some zplug plugins are not installed. Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
+# Then, source plugins and add commands to $PATH
+echo "Loading zplug plugins .."
+zplug load
+
