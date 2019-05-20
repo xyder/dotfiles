@@ -27,7 +27,7 @@ sal() {
 
 # ### generic aliases:
 alias history="history 0"
-
+alias _="sudo"
 
 # ### apt aliases:
 apt_cmd='apt-get '

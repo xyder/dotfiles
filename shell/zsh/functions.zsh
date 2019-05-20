@@ -8,6 +8,7 @@ check_command() {
   fi
 }
 
+
 install_spacevim() {
   curl -sLf https://spacevim.org/install.sh > $HOME/spacevim_install.sh
   chmod +x spacevim_install.sh
@@ -129,7 +130,7 @@ show_banner() {
   hostname=$(hostname -I 2>/dev/null || echo '(not available)')
 
   echo "$line"
-  if command -v figlet; then
+  if command -v figlet >/dev/null; then
     figlet -ck "XDS : Terminal"
   else
     echo "Can't display fancy banner. Please install figlet."

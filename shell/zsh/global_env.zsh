@@ -8,9 +8,9 @@ export ZPLUG_HOME=$HOME/.zplug
 # required name for spacevim
 export SPACEVIMDIR=$DOTFILES_DIR/vim/spacevim_config/
 
-if command -v nvim; then
+if command -v nvim >/dev/null; then
   export EDITOR=nvim
-elif command -v vim; then
+elif command -v vim >/dev/null; then
   export EDITOR=vim
 else
   export EDITOR=vi
