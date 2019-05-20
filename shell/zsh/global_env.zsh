@@ -23,6 +23,6 @@ export ZSH_PLUGINS_ALIAS_TIPS_EXPAND=1
 # zsh stuff
 export KEYTIMEOUT=1  # kill the delay when pressing ESC
 
-if command -v pypager; then
+if command -v pypager >/dev/null; then
   export PAGER=pypager
 fi

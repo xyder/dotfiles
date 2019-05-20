@@ -2,7 +2,7 @@
 
 
 check_command() {
-  if ! [[ "$(command -v $1)" = *"/$1" ]]; then
+  if ! [[ "$(command -v $1)" =~ (.*/$1) ]]; then
     echo "${2:-WARN}: \"$1\" is not installed."
     return ${3:--1}
   fi
