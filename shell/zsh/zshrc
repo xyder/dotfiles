@@ -77,8 +77,6 @@ check_command docker INFO 0
 check_command nvim
 check_command make
 check_command tig
-check_command pypager
-check_command pgcli
 
 
 if ! [ -d $SPACEVIM_CHECK_DIR ]; then
@@ -113,6 +111,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # start the system python env if defined
 startp
+
+# check commands from the sys venv
+check_command pypager
+check_command pgcli
 
 # install completion for bash
 autoload -U +X bashcompinit && bashcompinit
