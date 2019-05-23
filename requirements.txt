@@ -1,3 +1,4 @@
 pypager
 pgcli
+ipython
 
