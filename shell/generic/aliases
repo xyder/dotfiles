@@ -26,7 +26,7 @@ sal() {
 # #### aliases:
 
 # ### generic aliases:
-alias history="history 0"
+# alias history="history 0"
 alias _="sudo"
 
 # ### apt aliases:
