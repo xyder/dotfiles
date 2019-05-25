@@ -29,6 +29,7 @@ fi
 
 export TERM="xterm-256color"
 export DEFAULT_USER="xyder"
+
 export POWERLEVEL9K_MODE="nerdfont-complete"
 # export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir virtualenv pyenv vcs vi_mode command_execution_time status)
 export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context ssh root_indicator dir background_jobs history command_execution_time status newline virtualenv pyenv vcs vi_mode)
