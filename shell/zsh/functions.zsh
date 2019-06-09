@@ -17,6 +17,12 @@ install_spacevim() {
 }
 
 
+fix_compinit() {
+  echo "If missing operand error is thrown, all is well."
+  compaudit | xargs chmod go-w
+}
+
+
 print_aliases() {
   # TODO: Make this work
   for k v in ${(kv)aliases}; do

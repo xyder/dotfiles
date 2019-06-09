@@ -36,8 +36,8 @@ auto-completion-tab-key-behavior = "smart"
 
 [[layers]]
 name = 'shell'
-default_position = 'top'
-default_height = 30
+default_position = 'bottom'
+default_height = 20
 
 [[layers]]
 name = 'git'
