@@ -1,6 +1,6 @@
 [core]
     editor = vim
-    excludesfile = ~/.gitignore_global
+    excludesfile = ~/dotfiles/git/gitignore_global
 
 [mailmap]
     file = ZLF_mailmap
