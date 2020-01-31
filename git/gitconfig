@@ -91,6 +91,10 @@
     lupls   = !git fetch --all && git log --remotes --not --branches --simplify-by-decoration --decorate --oneline
                                                             # show unpulled commits on all branches (short)
 
+# misc
+    confx   = !git config user.name "xyder" && git config user.email "xydr2311@gmail.com"
+
 [gui]
     fontui = -family \"Hack Nerd Font\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
     fontdiff = -family \"Hack Nerd Font\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
+

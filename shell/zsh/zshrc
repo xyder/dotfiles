@@ -18,7 +18,7 @@ HISTFILE=~/.zsh_history
 
 # Use modern completion system
 autoload -Uz compinit
-compinit
+compinit -u  # disabled warning for insecure directories. As you can imagine, this is insecure.
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -122,3 +122,7 @@ autoload -U +X bashcompinit && bashcompinit
 # install completion for consul
 complete -o nospace -C /usr/bin/consul consul
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
