@@ -12,8 +12,9 @@ ZLF_*
 venv/
 .venv/
 *.py[co]
-venv/
-.venv/
+.vscode/
+.history/
+.idea/
 
 # Compiled source #
 ###################

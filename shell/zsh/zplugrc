@@ -7,7 +7,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # oh-my-zsh plugins
 zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/pip", from:oh-my-zsh
+# zplug "plugins/pip", from:oh-my-zsh
 zplug "plugins/autojump", from:oh-my-zsh
 zplug "plugins/cargo", from:oh-my-zsh
 zplug "plugins/celery", from:oh-my-zsh

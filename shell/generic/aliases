@@ -124,7 +124,7 @@ alias shiftws='i3-msg move workspace to output'
 # python related
 alias runp=$HOME/dotfiles/utils/run_in_env.sh
 # todo: remove this
-alias pym='source $MAIN_VENV/activate && source $MAIN_VENV/virtualenvwrapper.sh'
+# alias pym='source $MAIN_VENV/activate && source $MAIN_VENV/virtualenvwrapper.sh'
 # alias python=python3
 # alias virtualenv='python -m virtualenv'
-# alias pip='python -m pip'
+alias pip='python -m pip'
