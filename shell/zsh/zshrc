@@ -1,4 +1,7 @@
- #!/usr/bin/env zsh
+#!/usr/bin/env zsh
+
+# profile zsh
+# zmodload zsh/zprof
 
 # Set up the prompt
 
@@ -15,6 +18,8 @@ bindkey -e
 HISTSIZE=2000
 SAVEHIST=2000
 HISTFILE=~/.zsh_history
+
+. ~/dotfiles/shell/generic/p10k.zsh
 
 # Use modern completion system
 autoload -Uz compinit
@@ -117,11 +122,13 @@ check_command pypager
 check_command pgcli
 
 # install completion for bash
-autoload -U +X bashcompinit && bashcompinit
+# autoload -U +X bashcompinit && bashcompinit
 
 # install completion for consul
-complete -o nospace -C /usr/bin/consul consul
+# complete -o nospace -C /usr/bin/consul consul
 
+# to use the starship theme, uncomment
+# eval "$(starship init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -36,7 +36,8 @@ zplug "zsh-users/zsh-history-substring-search", defer:3  # load zsh-syntax-highl
 
 # themes
 # zplug "agnoster/agnoster-zsh-theme", as:theme
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, as:theme
+# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, as:theme
+zplug romkatv/powerlevel10k, as:theme, depth:1
 
 
 # Install plugins if there are plugins that have not been installed

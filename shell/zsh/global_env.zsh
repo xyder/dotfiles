@@ -30,21 +30,21 @@ fi
 export TERM="xterm-256color"
 export DEFAULT_USER="xyder"
 
-export POWERLEVEL9K_MODE="nerdfont-complete"
+# export POWERLEVEL9K_MODE="nerdfont-complete"
 # export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir virtualenv pyenv vcs vi_mode command_execution_time status)
 # export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context ssh root_indicator dir background_jobs history command_execution_time status newline virtualenv pyenv vcs vi_mode)
 # export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs vi_mode status)
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir history status newline virtualenv pyenv vcs vi_mode)
+# export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir history status newline virtualenv pyenv vcs vi_mode)
 # export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs history context ssh time)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+# export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 # export POWERLEVEL9K_DISABLE_RPROMPT=true
-export POWERLEVEL9K_VI_INSERT_MODE_STRING=""
-export POWERLEVEL9K_VI_COMMAND_MODE_STRING="Nrm"
+# export POWERLEVEL9K_VI_INSERT_MODE_STRING=""
+# export POWERLEVEL9K_VI_COMMAND_MODE_STRING="Nrm"
 # export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-export POWERLEVEL9K_TIME_FOREGROUND='black'
-export POWERLEVEL9K_TIME_BACKGROUND='green'
-export POWERLEVEL9K_STATUS_VERBOSE=true
-export POWERLEVEL9K_TIME_FORMAT="%D{%H:%M %d.%m.%y}"
+# export POWERLEVEL9K_TIME_FOREGROUND='black'
+# export POWERLEVEL9K_TIME_BACKGROUND='green'
+# export POWERLEVEL9K_STATUS_VERBOSE=true
+# export POWERLEVEL9K_TIME_FORMAT="%D{%H:%M %d.%m.%y}"
 
 export PIPENV_IGNORE_VIRTUALENVS=1
 export PIPENV_VENV_IN_PROJECT=1
