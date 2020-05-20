@@ -27,6 +27,7 @@ RUN apt-get update \
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
 
+# todo: fix this so it doesn't bust docker cache as often
 COPY docker_prereqs $HOMEDIR/.docker_prereqs
 
 RUN $HOMEDIR/.docker_prereqs/install_system.sh
@@ -44,5 +45,5 @@ RUN $HOMEDIR/.docker_prereqs/install_user.sh
 WORKDIR $HOMEDIR
 
 # todo: figure out a better entrypoint
-ENTRYPOINT ["/usr/bin/zsh"]
-CMD [ "sleep", "infinity" ]
+# ENTRYPOINT ["/usr/bin/zsh"]
+CMD tail -f /dev/null

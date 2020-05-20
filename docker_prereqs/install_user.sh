@@ -2,6 +2,10 @@
 
 cd $HOME
 
+# user folders mapped outside
+mkdir user_bound
+mkdir user_data
+
 # load env
 . $HOME/dotfiles/shell/zsh/global_env.zsh
 
@@ -15,7 +19,8 @@ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer 
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
 # install other python tools
-pip install -r $HOME/.docker_prereqs/py-requirements.txt
+echo "Installing system python packages .."
+pip install -qqr $HOME/.docker_prereqs/py-requirements.txt
 
 # install zplug and zsh plugins
 # DISABLED because it sometimes hangs. it'll run when the container is created instead

@@ -94,6 +94,8 @@ alias dkb="$dk_cmd build"
 alias dk-ci="$dk_cmd container inspect"  # todo: create function that pipes in less
 alias dk-cls="$dk_cmd container ls -a"
 
+# todo: convert this to a python function
+# equivalent, but check: `sudo docker rmi $(sudo docker images -f "dangling=true" -q)``
 alias dk-idang="$dk_cmd images -f \"dangling=true\""
 
 _docker_clear_images() {
