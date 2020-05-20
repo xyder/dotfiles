@@ -20,6 +20,10 @@ sal() {
     $git_dir/gitconfig \
     -SLne "$*" | pypager
 }
+
+j() {
+  cd $(find ${1:-.} -type d | fzf)
+}
 # #############################################
 
 

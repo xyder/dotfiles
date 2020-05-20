@@ -1,0 +1,4 @@
+pypager
+jupyterlab
+voila
+virtualenv

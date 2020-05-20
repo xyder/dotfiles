@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  xdr-dev:
+    image: xdr-dev
+    container_name: xdr-dev-main
+    restart: always
+    volumes:
+      - xdr-dev-main:/home/xyder/user_data
+      - /i/xdr_center/WIP/dkrd_projects:/home/xyder/user_bound  # todo: make this configurable
+    ports:
+      # todo: make these a range
+      - 9009:9009  # jupyter lab
+      - 8008:8008 # usual running server
+
+    # Uncomment the next four lines if you will use a ptrace-based debuggers like C++, Go, and Rust.
+    cap_add:
+     - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+
+volumes:
+  xdr-dev-main:
+    name: xdr-dev-main

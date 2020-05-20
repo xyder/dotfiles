@@ -3,7 +3,7 @@
 
 check_command() {
   if ! [[ "$(command -v $1)" =~ (.*/$1) ]]; then
-    echo "${2:-WARN}: \"$1\" is not installed."
+    echo "${2:-WARN}: \"$1\" is not installed. $4"
     return ${3:--1}
   fi
 }
@@ -97,20 +97,6 @@ dec() {
 
 pidport() {
   lsof -ti :$1
-}
-
-startp() {
-  # TODO: auto-install with q
-  expected=$HOME/dotfiles/sys-venv/bin/activate 
-  if [ -f $expected ]; then
-    source $expected
-  else
-    echo "WARNING: Default system venv not found @ '$expected'"
-  fi
-}
-
-stopp() {
-  deactivate
 }
 
 # git stuff

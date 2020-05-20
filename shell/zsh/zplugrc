@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source $HOME/.zplug/init.zsh
+. $HOME/.zplug/init.zsh
 
 # self manage
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -8,7 +8,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # oh-my-zsh plugins
 zplug "plugins/git", from:oh-my-zsh
 # zplug "plugins/pip", from:oh-my-zsh
-zplug "plugins/autojump", from:oh-my-zsh
+# zplug "plugins/autojump", from:oh-my-zsh
 zplug "plugins/cargo", from:oh-my-zsh
 zplug "plugins/celery", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
@@ -33,6 +33,8 @@ zplug "djui/alias-tips"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions", defer:3
 zplug "zsh-users/zsh-history-substring-search", defer:3  # load zsh-syntax-highlighting before this one
+zplug "lukechilds/zsh-nvm"
+zplug "andrewferrier/fzf-z"
 
 # themes
 # zplug "agnoster/agnoster-zsh-theme", as:theme
@@ -41,14 +43,17 @@ zplug romkatv/powerlevel10k, as:theme, depth:1
 
 
 # Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  printf "Some zplug plugins are not installed. Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  fi
+# if ! zplug check --verbose; then
+  # printf "Some zplug plugins are not installed. Install? [y/N]: "
+  # if read -q; then
+    # echo; zplug install
+  # fi
+# fi
+if ! zplug check; then
+  echo "Installing zplug plugins .."
+  zplug install &>/dev/null
 fi
 
 # Then, source plugins and add commands to $PATH
 echo "Loading zplug plugins .."
 zplug load
-

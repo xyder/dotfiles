@@ -13,3 +13,7 @@ sys-venv/
 
 # python stuff
 *.py[co]
+
+# vscode stuff
+.devcontainer
+.history
