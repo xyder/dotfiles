@@ -112,6 +112,7 @@ setopt histignorespace  # history ignores commands that start with space
 
 # sys envs
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
 # required for autojump to work properly
 # export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
 
@@ -140,5 +141,12 @@ eval "$(pyenv virtualenv-init -)"
 # fasd init
 eval "$(fasd --init auto)"
 
-# poetry init
+
+# add path and init poetry
+export PATH="$HOME/.poetry/bin:$PATH"
 source $HOME/.poetry/env
+
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
