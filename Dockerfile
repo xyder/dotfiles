@@ -27,10 +27,14 @@ RUN apt-get update \
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
 
-# todo: fix this so it doesn't bust docker cache as often
-COPY docker_prereqs $HOMEDIR/.docker_prereqs
+# todo: perhaps this can be copied with a chown into dotfiles initially
+COPY \
+    docker_prereqs/install_system.sh \
+    docker_prereqs/system-requirements.txt \
+    $HOMEDIR/docker_prereqs/
 
-RUN $HOMEDIR/.docker_prereqs/install_system.sh
+RUN $HOMEDIR/docker_prereqs/install_system.sh \
+    && rm -fr $HOMEDIR/docker_prereqs
 
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
@@ -38,11 +42,10 @@ ENV LANG=en_US.UTF-8 \
 
 USER $USR
 
+# todo: fix this so it doesn't bust docker cache as often
 COPY . $HOMEDIR/dotfiles
 
-RUN $HOMEDIR/.docker_prereqs/install_user.sh
-
-WORKDIR $HOMEDIR
+RUN ["/bin/zsh", "-c", "$HOMEDIR/dotfiles/docker_prereqs/install_user.sh"]
 
 # todo: figure out a better entrypoint
 # ENTRYPOINT ["/usr/bin/zsh"]

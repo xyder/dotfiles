@@ -1,4 +1,4 @@
 pypager
-jupyterlab
-voila
+# jupyterlab
+# voila
 virtualenv

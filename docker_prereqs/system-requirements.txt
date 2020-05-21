@@ -6,6 +6,8 @@ build-essential
 zsh
 git
 sudo
+less
+tmux
 
 apt-transport-https
 gnupg-agent

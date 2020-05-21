@@ -25,6 +25,7 @@ HISTFILE=$HOME/user_data/.zsh_history
 autoload -Uz compinit
 compinit -u  # disabled warning for insecure directories. As you can imagine, this is insecure.
 
+# todo: fix these if needed
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -45,6 +46,8 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# options:
+setopt histignorespace  # history ignores commands that start with space
 
 # load global env
 . $HOME/dotfiles/shell/zsh/global_env.zsh
@@ -74,6 +77,10 @@ if check_command figlet INFO ; then
   show_banner
 fi
 
+
+# sys envs
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
 # check usual apps
 check_command rg
 check_command fasd
@@ -84,54 +91,28 @@ check_command make
 check_command tig INFO 0 "Run 'sudo apt-get install tig' to install it."
 check_command npm INFO 0 "Run 'nvm install node' to install it."
 check_command python
+check_command pypager INFO 0 "run 'pip install pypager' to install it."
+check_command pgcli INFO 0 "run 'sudo apt-get install pgcli' to install it."
+
 
 
 if ! [ -d $SPACEVIM_CHECK_DIR ]; then
   echo "INFO: SpaceVim is not installed. Run 'install_spacevim' to install it and run 'SPUpdate' if needed."
 fi
 
-
 # load aliases
 . $DOTFILES_DIR/shell/generic/aliases
 
+# zinit config and plugins
+. $ZSH_CONFIG_DIR/zinit_config.zsh
+echo "Finished loading zinit. To update, run 'update_zinit'."
 
-# install zplug
-if ! [ -d $ZPLUG_HOME ]; then
-  git clone https://github.com/zplug/zplug $ZPLUG_HOME
-fi
-
-# load zplug config
-. $ZSH_CONFIG_DIR/zplugrc
-
-# options:
-setopt histignorespace  # history ignores commands that start with space
-
-# enable autojump. TODO: perhaps not needed?
-# TODO: create install command for autojump + autojump.rs
-# . /usr/share/autojump/autojump.sh
-
-# sys envs
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-# required for autojump to work properly
-# export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
-
-# check commands from the sys venv
-check_command pypager INFO 0 "run 'pip install pypager' to install it."
-check_command pgcli INFO 0 "run 'sudo apt-get install pgcli' to install it."
-
-# install completion for bash
-# autoload -U +X bashcompinit && bashcompinit
-
-# install completion for consul
-# complete -o nospace -C /usr/bin/consul consul
-
-# to use the starship theme, uncomment
-# eval "$(starship init zsh)"
-
+# configure nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# configure pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"

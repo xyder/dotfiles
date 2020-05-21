@@ -20,9 +20,9 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 
 # install other python tools
 echo "Installing system python packages .."
-pip install -qqr $HOME/.docker_prereqs/py-requirements.txt
+pip install -qqr $HOME/dotfiles/docker_prereqs/py-requirements.txt
 
-# install zplug and zsh plugins
-# DISABLED because it sometimes hangs. it'll run when the container is created instead
-# git clone https://github.com/zplug/zplug $ZPLUG_HOME
-# . $ZSH_CONFIG_DIR/zplugrc
+# install zinit
+mkdir ~/.zinit
+git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+. $ZSH_CONFIG_DIR/zshrc

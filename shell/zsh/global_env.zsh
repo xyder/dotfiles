@@ -3,8 +3,6 @@ export DOTFILES_DIR="$HOME/dotfiles"
 export ZSH_CONFIG_DIR=$DOTFILES_DIR/shell/zsh
 export SPACEVIM_CHECK_DIR="$HOME/.SpaceVim"
 
-# standard name for zplug
-export ZPLUG_HOME=$HOME/.zplug
 # required name for spacevim
 export SPACEVIMDIR=$DOTFILES_DIR/vim/spacevim_config/
 

@@ -16,6 +16,10 @@ install_spacevim() {
   rm spacevim_install.sh
 }
 
+update_zinit() {
+  zinit self-update
+  zinit update
+}
 
 fix_compinit() {
   echo "If missing operand error is thrown, all is well."
