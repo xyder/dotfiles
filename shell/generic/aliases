@@ -70,7 +70,14 @@ ssh_add_all='ssh-add $HOME/.ssh/^(*.pub|known_hosts|config|authorized_keys)'
 alias ssha=$ssh_agent
 alias sshl='ssh-add -l'
 alias sshad=$ssh_add_all
-alias sshaa=$ssh_agent' && '$ssh_add_all
+# alias sshaa=$ssh_agent' && '$ssh_add_all
+
+sshaa() {
+  setopt extended_glob
+  cmd=$ssh_agent' && '$ssh_add_all
+  eval $cmd
+  unsetopt extended_glob
+}
 
 # ### pip aliases
 pip_cmd='pip '
