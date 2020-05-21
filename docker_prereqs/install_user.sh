@@ -26,3 +26,5 @@ pip install -qqr $HOME/dotfiles/docker_prereqs/py-requirements.txt
 mkdir ~/.zinit
 git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 . $ZSH_CONFIG_DIR/zshrc
+
+nvm install node

@@ -18,3 +18,4 @@ neovim
 pgcli
 fzf
 ripgrep
+tig
