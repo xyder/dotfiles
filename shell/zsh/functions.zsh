@@ -143,3 +143,8 @@ show_banner() {
   # echo "    External IP\t: $(dig +short myip.opendns.com @resolver1.opendns.com)"
   echo $line
 }
+
+pyclean () {
+        find . -type f -name "*.py[co]" -delete
+        find . -type d -name "__pycache__" -delete
+}

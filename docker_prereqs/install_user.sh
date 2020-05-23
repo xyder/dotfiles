@@ -6,11 +6,15 @@ cd $HOME
 mkdir user_bound
 mkdir user_data
 
+# todo: bind /home/xyder/.cache/pypoetry/virtualenvs
+
 # load env
 . $HOME/dotfiles/shell/zsh/global_env.zsh
 
 # hook custom configs
 ln -s dotfiles/shell/zsh/zshrc .zshrc
+ln -s dotfiles/git/gitconfig .gitconfig
+ln -s user_data/.ssh .ssh
 
 # install pyenv
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh &>/dev/null

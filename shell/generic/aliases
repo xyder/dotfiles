@@ -14,6 +14,7 @@ gen_shell_dir=$dotfiles_dir'/shell/generic'
 git_dir=$dotfiles_dir'/git'
 
 # functions ###################################
+# todo: make this with python and fzf. add functions here too
 sal() {
   rg --color=always --heading --no-ignore \
     $gen_shell_dir/aliases \
@@ -102,7 +103,7 @@ alias dk-ci="$dk_cmd container inspect"  # todo: create function that pipes in l
 alias dk-cls="$dk_cmd container ls -a"
 
 # todo: convert this to a python function
-# equivalent, but check: `sudo docker rmi $(sudo docker images -f "dangling=true" -q)``
+# equivalent, but check: sudo docker rmi $(sudo docker images -f "dangling=true" -q)
 alias dk-idang="$dk_cmd images -f \"dangling=true\""
 
 _docker_clear_images() {
