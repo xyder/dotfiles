@@ -98,3 +98,6 @@
     fontui = -family \"Hack Nerd Font\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
     fontdiff = -family \"Hack Nerd Font\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
 
+[user]
+	email = xydr2311@gmail.com
+	name = xyder
