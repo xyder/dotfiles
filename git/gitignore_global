@@ -1,7 +1,8 @@
 # Custom #
 ##########
 # custom local only file (Z used for better file sorting and grouping)
-ZLF_*
+zlf_*
+
 
 # Pycharm related #
 ###################

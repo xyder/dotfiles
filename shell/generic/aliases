@@ -34,6 +34,12 @@ j() {
 # alias history="history 0"
 alias _="sudo"
 
+rrun() {
+  result=`fc -ln 1 | fzf`
+  echo "Running:" $result
+  eval $result
+}
+
 # ### apt aliases:
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
