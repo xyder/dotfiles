@@ -12,10 +12,12 @@ tmux
 apt-transport-https
 gnupg-agent
 software-properties-common
+gettext-base
 
+rsync
 figlet
 neovim
-pgcli
 fzf
 ripgrep
 tig
+docker-compose

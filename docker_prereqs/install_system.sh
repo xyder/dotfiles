@@ -2,7 +2,7 @@
 
 adduser $USR sudo
 # todo: make this configurable
-echo "xyder:${SUDO_PASS:-1234}" | chpasswd
+echo "${USR}:${SUDO_PASS:-1234}" | chpasswd
 
 echo "LC_ALL=en_US.UTF-8" >> /etc/environment
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
@@ -24,5 +24,7 @@ apt-get update
 apt-get install \
    docker-ce-cli \
    fasd
+
+usermod -aG docker,root $USR
 
 pip install -U pip

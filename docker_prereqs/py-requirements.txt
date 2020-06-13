@@ -2,3 +2,6 @@ pypager
 # jupyterlab
 # voila
 virtualenv
+pgcli
+python-dotenv[cli]  # offers the command (and more): dotenv -f file run ...
+# environs  # loads and validates environment vars

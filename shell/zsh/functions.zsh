@@ -11,9 +11,9 @@ check_command() {
 
 install_spacevim() {
   curl -sLf https://spacevim.org/install.sh > $HOME/spacevim_install.sh
-  chmod +x spacevim_install.sh
+  chmod +x $HOME/spacevim_install.sh
   $HOME/spacevim_install.sh
-  rm spacevim_install.sh
+  rm $HOME/spacevim_install.sh
 }
 
 update_zinit() {
