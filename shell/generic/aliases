@@ -40,6 +40,10 @@ rrun() {
   eval $result
 }
 
+dea() {
+  direnv allow $@
+}
+
 # ### apt aliases:
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
@@ -136,7 +140,6 @@ alias :q='exit'
 alias q='exit'
 alias ytp='$HOME/dotfiles/players/mpsyt/start.zsh'
 alias dsz='du -h --max-depth=1 . | sort -rh'
-
 
 alias zreload='source ~/.zshrc'
 # alias to shift a workspace in i3

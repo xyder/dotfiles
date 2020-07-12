@@ -129,3 +129,7 @@ source $HOME/.poetry/env
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# enable direnv
+eval "$(direnv hook zsh)"
+
