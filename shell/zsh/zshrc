@@ -128,8 +128,8 @@ source $HOME/.poetry/env
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # enable direnv
 eval "$(direnv hook zsh)"
-

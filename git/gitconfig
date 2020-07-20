@@ -25,6 +25,7 @@
     cc      = shortlog -sn                                  # commit count
 
     co      = checkout
+    cos     = !git checkout $(git branch | fzf)
     cob     = checkout -b
     cod     = checkout .
 
