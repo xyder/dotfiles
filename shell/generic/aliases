@@ -41,7 +41,7 @@ rrun() {
 }
 
 dea() {
-  direnv allow $@
+  direnv allow ${@:-.}
 }
 
 # ### apt aliases:
