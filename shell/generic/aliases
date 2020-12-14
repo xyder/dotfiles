@@ -130,6 +130,7 @@ alias dkc-upd="$dkc_cmd up -d"
 
 
 # ### other aliases
+alias original='command'
 alias e='nvim'
 alias vim='nvim'
 alias clear='echo -en "\ec"'
@@ -152,3 +153,14 @@ alias runp=$HOME/dotfiles/utils/run_in_env.sh
 # alias python=python3
 # alias virtualenv='python -m virtualenv'
 alias pip='python -m pip'
+
+if [ "$(command -v exa)" ]; then
+    unalias -m 'll'
+    unalias -m 'l'
+    unalias -m 'la'
+    unalias -m 'ls'
+    alias ls='exa -G  --color auto --icons -a -s type'
+    alias ll='exa -l --color always --icons -a -s type'
+    alias la='exa -lGa --color always --icons -a -s type'
+fi
+
