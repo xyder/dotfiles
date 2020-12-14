@@ -93,6 +93,7 @@ check_command npm INFO 0 "Run 'nvm install node' to install it."
 check_command python
 check_command pypager INFO 0 "run 'pip install pypager' to install it."
 check_command pgcli INFO 0 "run 'sudo apt-get install pgcli' to install it."
+check_command exa INFO 0 "run 'sudo apt-get install exa' or 'cargo install exa' to install it."
 
 
 
@@ -133,3 +134,6 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 # enable direnv
 eval "$(direnv hook zsh)"
+
+echo "-------"
+echo "Done loading zsh. Run 'lsc' to search for aliases and functions."

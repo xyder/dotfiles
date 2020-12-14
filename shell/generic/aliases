@@ -14,15 +14,16 @@ gen_shell_dir=$dotfiles_dir'/shell/generic'
 git_dir=$dotfiles_dir'/git'
 
 # functions ###################################
-# todo: make this with python and fzf. add functions here too
-sal() {
-  rg --color=always --heading --no-ignore \
-    $gen_shell_dir/aliases \
-    $git_dir/gitconfig \
-    -SLne "$*" | pypager
-}
+# todo: make this with python and fzf. add functions.zsh here too
+# todo: replaced with 'lsc'
+# sal() {  # replaced with lsc
+#   rg --color=always --heading --no-ignore \
+#     $gen_shell_dir/aliases \
+#     $git_dir/gitconfig \
+#     -SLne "$*" | pypager
+# }
 
-j() {
+j() {  # j <dir> - search <dir> or crt dir for a directory and change to it
   cd $(find ${1:-.} -type d | fzf)
 }
 # #############################################
@@ -34,13 +35,13 @@ j() {
 # alias history="history 0"
 alias _="sudo"
 
-rrun() {
+rerun() {  # rerun a previously executed command
   result=`fc -ln 1 | fzf`
   echo "Running:" $result
   eval $result
 }
 
-dea() {
+dea() {  # reload direnv for crt dir
   direnv allow ${@:-.}
 }
 
@@ -49,41 +50,40 @@ apt_cmd='apt-get '
 cache_cmd='apt-cache '
 s_apt_cmd='_ '$apt_cmd
 
-alias apti=$s_apt_cmd'install'
-alias aptr=$s_apt_cmd'remove'
-alias aptp=$s_apt_cmd'purge'  # completely removes packages
+alias apti=$s_apt_cmd'install'      # apt install
+alias aptr=$s_apt_cmd'remove'       # apt remove
+alias aptp=$s_apt_cmd'purge'        # completely removes packages
 
-alias aptc=$s_apt_cmd'clean'
-alias aptchk=$s_apt_cmd'check'
+alias aptc=$s_apt_cmd'clean'        # apt clean
+alias aptchk=$s_apt_cmd'check'      # apt check
 
-alias aptu=$s_apt_cmd'update'
-alias aptU=$s_apt_cmd'upgrade'
-alias aptuU='aptu && aptU'
+alias aptu=$s_apt_cmd'update'       # apt update
+alias aptU=$s_apt_cmd'upgrade'      # apt upgrade
+alias aptuU='aptu && aptU'          # apt update and apt upgrade
 
-alias apts=$cache_cmd'search'
-alias aptsn='apts --names-only'
-alias aptl=$cache_cmd'pkgnames'  # lists packages. can also search with it.
+alias apts=$cache_cmd'search'       # apt search
+alias aptsn='apts --names-only'     # apt search names only
+alias aptl=$cache_cmd'pkgnames'     # lists packages. can also search with it.
 
-alias aptinfo=$cache_cmd'show'  # show info for package
-alias aptdep=$cache_cmd'showpkg' # check dependecies
-alias aptstat=$cache_cmd'stats'
+alias aptinfo=$cache_cmd'show'      # show info for package
+alias aptdep=$cache_cmd'showpkg'    # check dependecies
+alias aptstat=$cache_cmd'stats'     # apt stats
 
 # ### git aliases
-alias gg='git gui &'
+alias gg='git gui &'                # run git gui in background
 
 # ### ls aliases
-alias la='ls -la'
-alias ll='ls -a'
+alias la='ls -la'                   # list all, in a list
+alias ll='ls -a'                    # list all
 
 # ### ssh aliases
 ssh_agent='eval `ssh-agent -s`'
 ssh_add_all='ssh-add $HOME/.ssh/^(*.pub|known_hosts|config|authorized_keys)'
-alias ssha=$ssh_agent
-alias sshl='ssh-add -l'
-alias sshad=$ssh_add_all
-# alias sshaa=$ssh_agent' && '$ssh_add_all
+alias ssha=$ssh_agent               # start ssh agent
+alias sshl='ssh-add -l'             # list loaded keys
+alias sshad=$ssh_add_all            # load all keys
 
-sshaa() {
+sshaa() {                           # start ssh agent and load all keys
   setopt extended_glob
   cmd=$ssh_agent' && '$ssh_add_all
   eval $cmd
@@ -92,68 +92,72 @@ sshaa() {
 
 # ### pip aliases
 pip_cmd='pip '
-alias pipa=$pip_cmd'install'
-alias pipd=$pip_cmd'uninstall'
-alias pipf=$pip_cmd'freeze'
-alias pipl=$pip_cmd'list'
+alias pipa=$pip_cmd'install'        # pip install
+alias pipd=$pip_cmd'uninstall'      # pip uninstall
+alias pipf=$pip_cmd'freeze'         # pip freeze
+alias pipl=$pip_cmd'list'           # pip list
 
 # ### tmux aliases
-alias txm='tmux'
-alias txl='tmux ls'
-alias txn='tmux new -s'
-alias txa='tmux attach -t'
+alias txm='tmux'                    # tmux
+alias txl='tmux ls'                 # tmux list all sessions
+alias txn='tmux new -s'             # tmux create new session
+alias txa='tmux attach -t'          # tmux attach to an existing session
 
 # ### docker aliases
 dk_cmd='docker'
 dkc_cmd='docker-compose'
-alias dk="$dk_cmd"
-alias dkb="$dk_cmd build"
+alias dk="$dk_cmd"                  # docker
+alias dkb="$dk_cmd build"           # docker build
 
-alias dk-ci="$dk_cmd container inspect"  # todo: create function that pipes in less
-alias dk-cls="$dk_cmd container ls -a"
+# todo: create function that pipes in less
+alias dk-ci="$dk_cmd container inspect"   # docker inspect container
+alias dk-cls="$dk_cmd container ls -a"    # docker list all containers
 
 # todo: convert this to a python function
 # equivalent, but check: sudo docker rmi $(sudo docker images -f "dangling=true" -q)
-alias dk-idang="$dk_cmd images -f \"dangling=true\""
+alias dk-idang="$dk_cmd images -f \"dangling=true\""    # docker show dangling images
 
 _docker_clear_images() {
   $dk_cmd rmi $(dk-idang -q)
 }
 
-alias dk-iclr=$_docker_clear_images
-alias dk-ils="$dk_cmd images ls -a"
+alias dk-iclr=$_docker_clear_images   # docker remove dangling images quietly
+alias dk-ils="$dk_cmd images ls -a"   # docker show all images
 
-alias dk-l="$dk_cmd logs -tf --tail"
+alias dk-l="$dk_cmd logs -tf --tail"  # docker tail logs
 
-alias dkc=$dkc_cmd
-alias dkc-upd="$dkc_cmd up -d"
+alias dkc=$dkc_cmd                    # docker-compose
+alias dkc-upd="$dkc_cmd up -d"        # docker-compose up dettached
 
 
 # ### other aliases
-alias original='command'
-alias e='nvim'
-alias vim='nvim'
-alias clear='echo -en "\ec"'
-alias clr='clear'
-alias c='clear'
-alias g='git'
-alias :q='exit'
-alias q='exit'
-alias ytp='$HOME/dotfiles/players/mpsyt/start.zsh'
-alias dsz='du -h --max-depth=1 . | sort -rh'
+alias original='command'              # runs original commands that were overwritten by aliases
+alias e='nvim'                        # edit with nvim
+alias vim='nvim'                      # force using nvim
+alias clear='echo -en "\ec"'          # clear screen
+alias clr='clear'                     # clear screen
+alias g='git'                         # git .. see gitconfig for git specific aliases
+alias :q='exit'                       # exit, vim style
+alias q='exit'                        # exit
+alias ytp='$HOME/dotfiles/players/mpsyt/start.zsh'    # youtube player
+alias dsz='du -h --max-depth=1 . | sort -rh'          # list directories and their sizes in the current dir
 
-alias zreload='source ~/.zshrc'
+alias zreload='source ~/.zshrc'       # reload zsh config
+
 # alias to shift a workspace in i3
-alias shiftws='i3-msg move workspace to output'
+alias shiftws='i3-msg move workspace to output'       # i3 shift workspace to display
 
 # python related
 alias runp=$HOME/dotfiles/utils/run_in_env.sh
+
 # todo: remove this
 # alias pym='source $MAIN_VENV/activate && source $MAIN_VENV/virtualenvwrapper.sh'
 # alias python=python3
 # alias virtualenv='python -m virtualenv'
-alias pip='python -m pip'
+alias pip='python -m pip'             # force pip to run as module from python
 
+
+# change aliases to use exa if available
 if [ "$(command -v exa)" ]; then
     unalias -m 'll'
     unalias -m 'l'
@@ -164,3 +168,10 @@ if [ "$(command -v exa)" ]; then
     alias la='exa -lGa --color always --icons -a -s type'
 fi
 
+# todo: make this better
+alias lsc='cat \
+  $HOME/dotfiles/shell/generic/aliases \
+  $HOME/dotfiles/shell/zsh/functions.zsh \
+  | fzf'
+
+# todo: command to create an envrc file in a new directory, complete with backlink in dotfiles
