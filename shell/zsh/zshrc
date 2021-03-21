@@ -90,11 +90,23 @@ check_command nvim INFO 0 "Run 'sudo apt-get install neovim' to install it."
 check_command make
 check_command tig INFO 0 "Run 'sudo apt-get install tig' to install it."
 check_command npm INFO 0 "Run 'nvm install node' to install it."
-check_command python
+check_command python INFO 0 "Run 'sudo apt-get install python3 python3-pip python-is-python3' to install it."
+# check_command pip INFO 0 "Run 'sudo apt-get install python3 python3-pip python-is-python3' to install it."
 check_command pypager INFO 0 "run 'pip install pypager' to install it."
 check_command pgcli INFO 0 "run 'sudo apt-get install pgcli' to install it."
 check_command exa INFO 0 "run 'sudo apt-get install exa' or 'cargo install exa' to install it."
-
+check_command ipython INFO 0 "run 'pip install ipython' to install it."
+check_command pylint INFO 0 "run 'pip install pylint' to install it."
+check_command virtualenv INFO 0 "run 'pip install virtualenv' to install it."
+check_command curl INFO 0 "Run 'sudo apt-get install curl' to install it."
+check_command wget INFO 0 "Run 'sudo apt-get install wget' to install it."
+# check_command zinit
+# check_command pyenv
+# check_command nvm
+check_command poetry
+check_command direnv INFO 0 "Run 'sudo apt-get install direnv' to install it."
+check_command docker-compose INFO 0 "Run 'sudo apt-get install docker-compose' to install it."
+check_command rsync INFO 0 "Run 'sudo apt-get install rsync' to install it."
 
 
 if ! [ -d $SPACEVIM_CHECK_DIR ]; then
@@ -106,7 +118,7 @@ fi
 
 # zinit config and plugins
 . $ZSH_CONFIG_DIR/zinit_config.zsh
-echo "Finished loading zinit. To update, run 'update_zinit'."
+echo "INFO: Finished loading zinit. To update, run 'update_zinit'."
 
 # configure nvm
 export NVM_DIR="$HOME/.nvm"
@@ -135,5 +147,6 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # enable direnv
 eval "$(direnv hook zsh)"
 
-echo "-------"
-echo "Done loading zsh. Run 'lsc' to search for aliases and functions."
+echo "-------------------------------------------------"
+echo "INFO: Done loading zsh. Run 'lsc' to search for aliases and functions."
+echo "-------------------------------------------------"

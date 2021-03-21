@@ -145,3 +145,23 @@ pyclean () {      # cleanup python cache and compiled
         find . -type f -name "*.py[co]" -delete
         find . -type d -name "__pycache__" -delete
 }
+
+init_envrc() {
+  if [[ ! -f ".envrc" ]]; then
+
+    cat <<'EOM' >> .envrc
+# to check what gets loaded here, visit: https://github.com/xyder/dotfiles/blob/master/.envrc
+. ~/dotfiles/.envrc
+
+
+# load env vars from file
+# export $(nxc -lf .env | xargs -d '\n')
+
+# export alias
+# export_alias name 'echo "hy!"'
+EOM
+
+  else
+    echo ".envrc already exists."
+  fi
+}
