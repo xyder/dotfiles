@@ -157,7 +157,13 @@ init_envrc() {
 # load env vars from file
 # export $(nxc -lf .env | xargs -d '\n')
 
-# export alias
+# or
+
+# set -a
+# source <(nxc -lf .env)
+# set +a
+
+# export aliases
 # export_alias name 'echo "hy!"'
 EOM
 
