@@ -45,6 +45,12 @@ dea() {  # reload direnv for crt dir
   direnv allow ${@:-.}
 }
 
+# cd aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 # ### apt aliases:
 apt_cmd='apt-get '
 cache_cmd='apt-cache '
