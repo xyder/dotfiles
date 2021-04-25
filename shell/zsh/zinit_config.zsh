@@ -7,6 +7,9 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit snippet OMZP::git
+
+#    light-mode andrewferrier/fzf-z \
+#    light-mode pierpo/fzf-docker \
 zinit for \
     light-mode OMZP::git \
     light-mode OMZP::colored-man-pages \
@@ -20,8 +23,9 @@ zinit for \
     light-mode zsh-users/zsh-syntax-highlighting \
     light-mode zsh-users/zsh-autosuggestions \
     light-mode zsh-users/zsh-history-substring-search \
-    light-mode lukechilds/zsh-nvm \
-    light-mode andrewferrier/fzf-z
+    light-mode lukechilds/zsh-nvm
+
+# export FZF_COMPLETION_TRIGGER=','
 
 # disabled completions for cargo, celery, django, docker, docker-compose
 # todo: find a good REPL like completion system for these and other

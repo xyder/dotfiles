@@ -49,6 +49,14 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # options:
 setopt histignorespace  # history ignores commands that start with space
 
+# load aliases
+. $DOTFILES_DIR/.direnv/aliases_config
+. $DOTFILES_DIR/.direnv/functions_config
+
+# load commands
+export PATH="$DOTFILES_DIR/.direnv/commands:$PATH"
+
+
 # load global env
 . $HOME/dotfiles/shell/zsh/global_env.zsh
 
@@ -58,11 +66,6 @@ if ! [ -d $DOTFILES_DIR ]; then
   echo "WARN: Dotfiles dir could not be found."
   return -1
 fi
-
-
-# load custom functions
-. $ZSH_CONFIG_DIR/functions.zsh
-
 
 # load local env if it exists
 if [ -f $HOME/local_env.zsh ]; then
@@ -113,9 +116,6 @@ if ! [ -d $SPACEVIM_CHECK_DIR ]; then
   echo "INFO: SpaceVim is not installed. Run 'install_spacevim' to install it and run 'SPUpdate' if needed."
 fi
 
-# load aliases
-. $DOTFILES_DIR/shell/generic/aliases
-
 # zinit config and plugins
 . $ZSH_CONFIG_DIR/zinit_config.zsh
 echo "INFO: Finished loading zinit. To update, run 'update_zinit'."
@@ -148,5 +148,5 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 eval "$(direnv hook zsh)"
 
 echo "-------------------------------------------------"
-echo "INFO: Done loading zsh. Run 'lsc' to search for aliases and functions."
+echo "INFO: Done loading zsh. Run 'dcsg' to search for aliases and functions."
 echo "-------------------------------------------------"

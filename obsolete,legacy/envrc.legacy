@@ -31,15 +31,49 @@
 # to enable aliases hack, copy the following exactly:
 # -----------------------------------------------------------------------------
 
-# legacy cleanup
+# preparation for export_alias
 alias_dir=$PWD/.direnv/aliases
 rm -rf "$alias_dir"
 
-# setup:
-$(cd $HOME/dotfiles && poetry run which dc) build
 
-PATH_add $HOME/dotfiles/.direnv/commands
-PATH_add ./.direnv/commands
+# example: export_alias zz "ls -la"
+export_alias() {
+    # taken from: https://github.com/direnv/direnv/issues/73
+    # comment: https://github.com/direnv/direnv/issues/73#issuecomment-343891007
 
+    local name=$1
+    shift
+
+    # local alias_dir=$PWD/.direnv/aliases  # local version
+
+    local target="$alias_dir/$name"
+
+    mkdir -p "$alias_dir"
+    PATH_add "$alias_dir"
+
+    echo '#!/usr/bin/env zsh' > "$target"
+    echo "$@" >> "$target"
+    chmod +x "$target"
+}
+
+# global commands:
+export_alias ls! 'ls -1A ./.direnv/aliases'
+export_alias run! '$(ls! | fzf)'
 
 # -----------------------------------------------------------------------------
+# Functions. Export using:
+#   export_alias test_de_2 "$fn_name"
+
+read -r -d '' fn_name <<- "EOM"
+inner() {
+    echo "$1"
+}
+inner \$@
+EOM
+# -----------------------------------------------------------------------------
+
+# examples:
+# export_alias test_de 'echo "direnv alias works!"'
+
+# example with args:
+# export_alias test_de_3 'echo $@'
