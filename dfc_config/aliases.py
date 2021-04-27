@@ -20,6 +20,18 @@ aliases = dict(
     g=('git', '', ''),
     q=('exit', '', ''),
     dsz=('du -h --max-depth=1 . | sort -rh', '', 'list directories and their sizes from the current directory'),
+    zreload=('source ~/.zshrc', '', 'reload zsh config'),
+
+    # dfc aliases
+    dc_list=('dc list', 'l!', 'list local commands'),
+    dc_search=('dc_search', 's!', 'search local commands'),
+    dc_search_target=('dc_search_target', 'st!', 'search local commands and return target'),
+    dc_run=('dc_run', 'r!', 'run local command'),
+
+    dc_list_global=('dc -g list', 'l.!', 'list all commands'),
+    dc_search_global=('dc_search_global', 's.!', 'search all commands'),
+    dc_search_target_global=('dc_search_target_global', 'st.!', 'search all commands and return target'),
+    dc_run_global=('dc_run_global', 'r.!', 'run any command'),
 
     # apt aliases
     apti=(f'{_apt_cmd} install', '', 'apt install'),

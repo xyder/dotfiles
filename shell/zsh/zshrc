@@ -50,8 +50,8 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 setopt histignorespace  # history ignores commands that start with space
 
 # load aliases
-. $DOTFILES_DIR/.direnv/aliases_config
 . $DOTFILES_DIR/.direnv/functions_config
+. $DOTFILES_DIR/.direnv/aliases_config
 
 # load commands
 export PATH="$DOTFILES_DIR/.direnv/commands:$PATH"
