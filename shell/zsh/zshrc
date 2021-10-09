@@ -49,13 +49,6 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # options:
 setopt histignorespace  # history ignores commands that start with space
 
-# load aliases
-. $DOTFILES_DIR/.direnv/functions_config
-. $DOTFILES_DIR/.direnv/aliases_config
-
-# load commands
-export PATH="$DOTFILES_DIR/.direnv/commands:$PATH"
-
 
 # load global env
 . $HOME/dotfiles/shell/zsh/global_env.zsh
@@ -71,6 +64,15 @@ fi
 if [ -f $HOME/local_env.zsh ]; then
   . $HOME/local_env.zsh  # TODO: create a function to source_if_exist_with_opt_warn
 fi
+
+
+# load aliases
+. $DOTFILES_DIR/.direnv/functions_config
+. $DOTFILES_DIR/.direnv/aliases_config
+
+# load commands
+export PATH="$DOTFILES_DIR/.direnv/commands:$PATH"
+
 
 if ! check_command git FATAL ; then
   return -1
@@ -148,5 +150,5 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 eval "$(direnv hook zsh)"
 
 echo "-------------------------------------------------"
-echo "INFO: Done loading zsh. Run 'dcsg' to search for aliases and functions."
+echo "INFO: Done loading zsh. Run 's.!' to search for aliases and functions."
 echo "-------------------------------------------------"

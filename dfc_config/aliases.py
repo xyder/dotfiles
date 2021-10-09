@@ -59,6 +59,8 @@ aliases = dict(
     ssha=(activate_ssh_agent, '', 'start ssh agent'),
     sshl=('ssh-add -l', '', 'list loaded keys'),
 
+    # pip aliases
+    pip=('pip3', '', ''),
     # docker commands
     dk=('docker', '', 'docker'),
     dkb=('docker build', '', 'docker build'),
