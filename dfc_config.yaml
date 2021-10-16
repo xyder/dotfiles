@@ -1,0 +1,304 @@
+# {...} need to be interpolated as {{...}} to be kept as-is
+
+variables:
+  activate_ssh_agent: 'eval `ssh-agent -s`'
+  _go_dotfiles: 'cd $HOME/dotfiles'
+  _dc_command: '$(cd $HOME/dotfiles && poetry run which dc)'
+  _awk_print_1: '{print $1}'
+  _awk_print_3: '{print $3}'
+  _apt_cmd: 'sudo apt-get'
+  _cache_cmd: 'apt-cache'
+  _ssh_add_all: 'ssh-add $HOME/.ssh/^(*.pub|known_hosts|config|authorized_keys)'
+  _docker_container_ls: >-
+    docker container ls -a
+    --format "table {{.ID}} ## {{.Image}} {{.Command}} {{.CreatedAt}} {{.Status}} {{.Ports}} {{.RunningFor}} {{.Names}} ##{{json .}}"
+    | fzf --delimiter='##' --with-nth=2 | awk -F'##' '{print $1}'
+
+aliases:
+  cds: { command: 'cd $(find ${{1:-.}} -type d | fzf)', description: Search sub-directories and jump to them }
+  _: { command: sudo }
+  dea: { command: 'direnv allow ${{@:-.}}', description: 'reload direnv for current directory' }
+  original: { command: 'command', description: 'run original commands that were overwritten by aliases' }
+  e: { command: 'nvim', description: 'edit with nvim' }
+  vim: { command: 'nvim', description: 'edit with nvim' }
+  clr: { command: 'echo -en "\ec"', description: 'clear screen' }
+  g: { command: 'git', description: '' }
+  q: { command: 'exit', description: '' }
+  dsz: { command: 'du -h --max-depth=1 . | sort -rh', description: list directories and their sizes from the current directory }
+  zreload: { command: 'source ~/.zshrc', description: reload zsh config }
+
+  # dfc aliases
+  l!: { command: dc list, description: list local commands }
+  s!: { command: dc_search, description: search local commands }
+  st!: { command: dc_search_target, description: search local commands and return target }
+  r!: { command: dc_run, description: run local command }
+  init_envrc: { command: 'dc init --envrc', description: 'init a starter envrc file'}
+
+  # dfc global aliases
+  l.!: { command: 'dc -g list', description: list all commands }
+  s.!: { command: dc_search_global, description: search all commands }
+  st.!: { command: dc_search_target_global, description: search all commands and return target }
+  r.!: { command: dc_run_global, description: run any command }
+
+  # apt aliases
+  apti: { command: '{_apt_cmd} install', description: '' }
+  aptr: { command: '{_apt_cmd} remove', description: '' }
+  aptp: { command: '{_apt_cmd} purge', description: '' }
+  aptc: { command: '{_apt_cmd} clean', description: '' }
+  aptu: { command: '{_apt_cmd} update', description: '' }
+  aptU: { command: '{_apt_cmd} update && {_apt_cmd} upgrade', description: '' }
+
+  # apt cache aliases
+  apts: { command: '{_cache_cmd} search', description: 'apt search' }
+  aptsn: { command: '{_cache_cmd} search --names-only', description: 'apt search names' }
+  aptl: { command: '{_cache_cmd} pkgnames', description: 'apt list packages. can also search with it.' }
+  aptinfo: { command: '{_cache_cmd} show', description: 'show info for package' }
+  aptdep: { command: '{_cache_cmd} showpkg', description: 'check package dependencies' }
+  aptstat: { command: '{_cache_cmd} stats', description: 'apt stats' }
+
+  # other aliases
+  gg: { command: 'git gui &', description: 'run git gui in background' }
+
+  # ls: { command: 'ls', description: ''}
+  # la: { command: 'ls -la', description: ''}
+  # ll: { command: 'ls -a', description: ''}
+
+  ls: { command: 'exa -G  --color auto --icons -a -s type', description: '' }
+  la: { command: 'exa -lGa --color always --icons -a -s type', description: '' }
+  ll: { command: 'exa -l --color always --icons -a -s type', description: '' }
+
+  # ssh aliases
+  ssha: { command: '{activate_ssh_agent}', description: 'start ssh agent' }
+  sshl: { command: 'ssh-add -l', description: 'list loaded keys' }
+
+  # pip aliases
+  pip: { command: 'pip3', description: '' }
+
+  # docker aliases
+  dk: { command: 'docker', description: '' }
+  dkb: { command: 'docker build', description: '' }
+
+  dk_i_dang: { command: 'docker images -f "dangling=true"', description: 'list dangling images' }
+  dk_rmi_dang: { command: 'docker rmi $(docker images -f "dangling=true" -q)', description: 'remove dangling images' }
+  dk_i_ls: { command: 'docker images ls -a', description: 'list all images' }
+
+  dk_l: { command: 'docker logs -tf --tail', description: 'tail logs for a container' }
+
+  dkc: { command: 'docker-compose', description: '' }
+  dkc_u: { command: 'docker-compose up -d', description: 'docker-compose up dettached' }
+
+
+commands:
+  # dfc commands
+  dc: { command: '{_dc_command} $@', description: The dotfiles cli }
+
+  dc_search:
+    command: dc list | fzf --delimiter='\\0' --with-nth=1,2 | awk -F'\\0' '{_awk_print_1}'
+    description: Search commands and aliases (prints the command name)
+
+  dc_search_target:
+    command: dc list | fzf --delimiter='\\0' --with-nth=1,2 | awk -F'\\0' '{_awk_print_3}'
+    description: Search commands and aliases (prints the linked command)
+
+  dc_run: { command: 'eval `dc_search_target`', description: Run commands and aliases }
+
+  # dfc global variants
+  dcg: { command: 'dc -g $@', description: The dotfiles cli (global) }
+
+  dc_search_global:
+    command: dc -g list | fzf --delimiter='\\0' --with-nth=1,2 | awk -F'\\0' '{_awk_print_1}'
+    description: Search commands and aliases (prints the command name) (global)
+
+  dc_search_target_global:
+    command: dc -g list | fzf --delimiter='\\0' --with-nth=1,2 | awk -F'\\0' '{_awk_print_3}'
+    description: Search commands and aliases (prints the linked command) (global)
+
+  dc_run_global: { command: 'eval `dc_search_target_global`', description: Run commands and aliases (global) }
+
+functions:
+  rr:
+    command: |+
+      result=`fc -ln 1 | fzf`
+      echo "Running:" $result
+      eval $result
+    description: Re-run a previously executed command
+
+  check_command:
+    command: |+
+      if ! [[ "$(command -v $1)" =~ (.*/$1) ]]; then
+          echo "${{2:-WARN}}: \"$1\" is not installed. $4"
+          return ${{3:--1}}
+      fi
+    description: checks if a command/app is installed
+
+  install_spacevim:
+    command: |+
+      curl -sLf https://spacevim.org/install.sh > $HOME/spacevim_install.sh
+      chmod +x $HOME/spacevim_install.sh
+      $HOME/spacevim_install.sh
+      rm $HOME/spacevim_install.sh
+
+  update_zinit:
+    command: |+
+      zinit self-update
+      zinit update
+
+  fix_compinit:
+    command: |+
+      echo "If missing operand error is thrown, all is well."
+      compaudit | xargs chmod go-w
+
+  cld:
+    command: |+
+      cd $@
+      ls -a
+    description: moves to a directory and lists content
+
+  qh:
+    command: 'grep --color=always "$*" "$HISTFILE" | less -RX'
+    description: function to show all commands in history that contain the given argument (see dotfiles config for more)
+    # using --color=always to enable colors in the pipe
+    # using --color=auto only enables colors if the output is in the terminal
+    # using less with -R displays ANSI color sequences in raw form
+    # using less with -X to not clear the screen after quitting less
+
+  qt:
+    command: 'grep -ir --color=always "$*" . | less -RX'
+    description: function to search for text in current directory
+    # using grep with -i to ignore case
+    # using grep with -r to search recursively
+
+  lss:
+    command: 'find $1 -maxdepth 1 -type l -ls'
+    description: list symbolic links
+
+  no_zsh:
+    command: |+
+      export OVERRIDE=1
+      exec bash
+    description: run bash from zsh
+
+  wf:
+    command: |+
+      echo $#
+      if [[ "$1" == "s" && $# -eq 2 ]]; then
+          sudo less +F "$2"
+      else
+          less +F "$1"
+      fi
+    description: kinda like tail, but with less
+
+  tf:
+    command: |+
+      echo $#
+      if [[ "$1" == "s" && $# -eq 2 ]]; then
+          sudo tail -f "$2"
+      else
+          tail -f "$1"
+      fi
+    description: kinda like tail, but actually with tail
+
+  dec:
+    command: |+
+      echo "Decrypting file: $1"
+      cp $1 $1.tmp
+      openssl bf-cbc -d -a -in $1 -out $1.tmp
+      rm $1
+      mv $1.tmp $1
+    description: decrypt a file using bf-cbc
+
+  enc:
+    command: |+
+      echo "Encrypting file: $1"
+      cp "$1" "$1.tmp"
+      openssl bf-cbc -a -salt -in "$1" -out "$1.tmp"
+      rm "$1"
+      mv "$1.tmp" "$1"
+    description: encrypt a file using bf-cbc
+
+  pidport:
+    command: 'lsof -ti :$1'
+    description: show the pid of the process that is occupying the given port
+
+  show_banner:
+    command: |+
+      line=$(printf '%*s' "$(tput cols)" | tr ' ' '=')
+      bold=$(tput bold)
+      normal=$(tput sgr0)
+
+      user=$(whoami)
+      user=$(tr '[:lower:]' '[:upper:]' <<< ${{user:0:1}})${{user:1}}
+
+      uptime=$(uptime -p 2>/dev/null || uptime)
+      hostname=$(hostname -I 2>/dev/null || echo '(not available)')
+
+      echo "$line"
+      if command -v figlet >/dev/null; then
+          figlet -ck "XDS : Terminal"
+      else
+          echo "Can't display fancy banner. Please install figlet."
+      fi
+
+      echo $line
+      echo "    Hello, ${{bold}}$user${{normal}}!"
+      echo $line
+      echo "    Time\t| $(date +"%T %P %Z - %a, %e %b %G - week %V.")"
+      echo "    Uptime\t| "$uptime
+      echo $line
+      echo "    Local IP\t| $hostname"
+      # disabled for faster load time
+      # echo "    External IP\t: $(dig +short myip.opendns.com @resolver1.opendns.com)"
+      echo $line
+
+  pyclean:
+    command: |+
+      find . -type f -name "*.py[co]" -delete
+      find . -type d -name "__pycache__" -delete
+    description: cleanup python cache and compiled
+
+  # ssh functions
+  sshad:
+    command: |+
+      setopt extended_glob
+      {_ssh_add_all}
+      unsetopt extended_glob
+    description: load all keys
+
+  sshaa:
+    command: |+
+      setopt extended_glob
+      {activate_ssh_agent}
+      {_ssh_add_all}
+      unsetopt extended_glob
+    description: start agent and load all keys
+
+  dk_cs:
+    command: '{_docker_container_ls}'
+    description: List and search all docker containers
+
+  dk_ci:
+    command: 'docker inspect $({_docker_container_ls})'
+    description: Search and inspect container
+
+  # export functions
+  xpx:
+    command: |+
+      export $($@ | xargs -d '\n')
+    description: export using xargs
+  xpnx:
+    command: |+
+      export $(nxc $@ | xargs -d '\n')
+    description: export using xargs and nxc
+
+  xps:
+    command: |+
+      set -a
+      source <($@)
+      set +a
+    description: export using source
+  xpns:
+    command: |+
+      set -a
+      source <(nxc $@)
+      set +a
+    description: export using source and nxc
