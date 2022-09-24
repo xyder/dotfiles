@@ -87,6 +87,10 @@ aliases:
   dkc: { command: 'docker-compose', description: '' }
   dkc_u: { command: 'docker-compose up -d', description: 'docker-compose up dettached' }
 
+  # podman aliases
+  pm: { command: 'podman', description: '' }
+  pmc: { command: 'podman-compose', description: '' }
+
 
 commands:
   # dfc commands
