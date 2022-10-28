@@ -1,7 +1,10 @@
 #!/usr/bin/env zsh
 
 # init zinit
-. $HOME/.zinit/bin/zinit.zsh
+
+# disabled since this doesn't seem to be working anymore:
+# . $HOME/.zinit/bin/zinit.zsh
+
 # install zinit completions
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
