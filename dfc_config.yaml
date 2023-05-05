@@ -135,6 +135,17 @@ functions:
       fi
     description: checks if a command/app is installed
 
+  flag_apt:
+    command: |+
+      file_path=$HOME/dotfiles/.tag_installed_apt 
+      if [ ! -f $file_path ]; then
+          echo "Setting apt packages as installed."
+          touch $file_path
+      else
+          echo "Setting apt packages as not installed."
+          rm $file_path
+      fi
+
   install_spacevim:
     command: |+
       curl -sLf https://spacevim.org/install.sh > $HOME/spacevim_install.sh

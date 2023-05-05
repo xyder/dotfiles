@@ -82,29 +82,55 @@ if check_command figlet INFO ; then
   show_banner
 fi
 
+if [ ! -f $HOME/dotfiles/.tag_installed_apt ] && check_command apt ; then
+  echo "-------------------------------------------------"
+  echo "Attempting to install packages .."
+  sudo apt-get install -y \
+    ripgrep \
+    fzf \
+    neovim \
+    tig \
+    python3 \
+    python3-pip \
+    python-is-python3 \
+    exa \
+    curl \
+    wget \
+    direnv \
+    rsync \
+    tmux
+
+  flag_apt
+  echo "Done installing apt packages. To run again, run 'flag_apt' and then 'zreload'."
+  echo "-------------------------------------------------"
+fi
 
 # sys envs
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 # check usual apps
-check_command rg
+check_command rg INFO 0 "Run 'sudo apt-get install ripgrep' to install it."
 check_command fasd
 check_command fzf INFO 0 "Run 'sudo apt-get install fzf' to install it."
 check_command docker INFO 0 "Check the web how to install it"
 check_command nvim INFO 0 "Run 'sudo apt-get install neovim' to install it."
-check_command make
+# check_command make
 check_command tig INFO 0 "Run 'sudo apt-get install tig' to install it."
 check_command npm INFO 0 "Run 'nvm install node' to install it."
 check_command python INFO 0 "Run 'sudo apt-get install python3 python3-pip python-is-python3' to install it."
 # check_command pip INFO 0 "Run 'sudo apt-get install python3 python3-pip python-is-python3' to install it."
-check_command pypager INFO 0 "run 'pip install pypager' to install it."
-check_command pgcli INFO 0 "run 'sudo apt-get install pgcli' to install it."
+
+# not used
+# check_command pypager INFO 0 "run 'pip install pypager' to install it."
+# check_command pgcli INFO 0 "run 'sudo apt-get install pgcli' to install it."
+
 check_command exa INFO 0 "run 'sudo apt-get install exa' or 'cargo install exa' to install it."
 check_command ipython INFO 0 "run 'pip install ipython' to install it."
 check_command pylint INFO 0 "run 'pip install pylint' to install it."
 check_command virtualenv INFO 0 "run 'pip install virtualenv' to install it."
 check_command curl INFO 0 "Run 'sudo apt-get install curl' to install it."
 check_command wget INFO 0 "Run 'sudo apt-get install wget' to install it."
+# todo: fix, these don't work at the moment
 # check_command pyenv
 # check_command nvm
 check_command poetry

@@ -17,3 +17,7 @@ sys-venv/
 # vscode stuff
 .devcontainer
 .history
+
+# tags
+.tag_installed_apt
+
