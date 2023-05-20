@@ -122,7 +122,10 @@ check_command python INFO 0 "Run 'sudo apt-get install python3 python3-pip pytho
 
 # not used
 # check_command pypager INFO 0 "run 'pip install pypager' to install it."
-# check_command pgcli INFO 0 "run 'sudo apt-get install pgcli' to install it."
+#
+# override pager
+export PAGER='less -SRXF'
+check_command pgcli INFO 0 "run 'sudo apt-get install pgcli' to install it."
 
 check_command exa INFO 0 "run 'sudo apt-get install exa' or 'cargo install exa' to install it."
 check_command ipython INFO 0 "run 'pip install ipython' to install it."
