@@ -137,7 +137,7 @@ functions:
 
   flag_apt:
     command: |+
-      file_path=$HOME/dotfiles/.tag_installed_apt 
+      file_path=$HOME/dotfiles/.tag_installed_apt
       if [ ! -f $file_path ]; then
           echo "Setting apt packages as installed."
           touch $file_path
@@ -247,15 +247,15 @@ functions:
       uptime=$(uptime -p 2>/dev/null || uptime)
       hostname=$(hostname -I 2>/dev/null || echo '(not available)')
 
-      echo "$line"
-      if command -v figlet >/dev/null; then
-          figlet -ck "XDS : Terminal"
-      else
-          echo "Can't display fancy banner. Please install figlet."
-      fi
+      # echo $line
+      # if command -v figlet >/dev/null; then
+      #     figlet -ck "XDS : Terminal"
+      # else
+      #     echo "Can't display fancy banner. Please install figlet."
+      # fi
 
-      echo $line
-      echo "    Hello, ${{bold}}$user${{normal}}!"
+      # echo $line
+      # echo "    Hello, ${{bold}}$user${{normal}}!"
       echo $line
       echo "    Time\t| $(date +"%T %P %Z - %a, %e %b %G - week %V.")"
       echo "    Uptime\t| "$uptime

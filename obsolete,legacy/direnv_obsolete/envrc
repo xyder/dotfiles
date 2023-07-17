@@ -62,7 +62,6 @@ $(cd $HOME/dotfiles && poetry run which dc) build
 PATH_add $HOME/dotfiles/.direnv/commands
 PATH_add ./.direnv/commands
 
-
 # -----------------------------------------------------------------------------
 
 echo 'INFO: Run l! to list local commands or l.! to list all commands.'
