@@ -1,30 +1,21 @@
 # copy this to a directory and adapt accordingly
-# --------------------------------
+# ---------------------------------------------------------
 # optional on enter hook
 # enter_hook() {
 # }
 
-# Cleanup code
-exit_hook() {
-    # Remove functions
-    # unset -f my_function
+# optional on exit hook
+# exit_hook() {
+# }
+# ---------------------------------------------------------
 
-    # Remove aliases
-    # unalias ll
-
-    # Remove environment variables
-    # unset MY_ENV_VAR
-}
-
-# --------------------------------
-
-# Functions
+# Functions -----------------------------------------------
 # my_function() {
 #     # echo "Hello, from the current directory!"
 # }
 
-# Aliases
+# Aliases -------------------------------------------------
 # alias ll='ls -l'
 
-# Environment variables
+# Environment variables -----------------------------------
 # export MY_ENV_VAR="some value"

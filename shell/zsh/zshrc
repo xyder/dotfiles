@@ -225,7 +225,6 @@ load_cd_functions_hook() {
 
         initial_parameters=(echo ${(ok)parameters})
 
-
         # define the function to print loaded functions, aliases and envs
         print_sourced() {
             for func in ${(ok)functions}; do
@@ -234,15 +233,11 @@ load_cd_functions_hook() {
                 fi
             done
 
-            [[ ! -z $local_functions ]] && echo "Loaded functions:$local_functions"
-
             for alias in ${(ok)aliases}; do
                 if [[ ! "$initial_aliases" == *"$alias"* ]]; then
                     local_aliases="$local_aliases $alias"
                 fi
             done
-
-            [[ ! -z $local_aliases ]] && echo "Loaded aliases:$local_aliases"
 
             for var in ${(ok)parameters}; do
                 if [[ ! "$initial_parameters" == *"$var"* ]]; then
@@ -250,18 +245,23 @@ load_cd_functions_hook() {
                 fi
             done
 
+            [[ ! -z $local_functions ]] && echo "Loaded functions:$local_functions"
+            [[ ! -z $local_aliases ]] && echo "Loaded aliases:$local_aliases"
             [[ ! -z $local_parameters ]] && echo "Loaded variables:$local_parameters"
+
+            export _ZSH_CD_CLEAN_FUNC=$local_functions
+            export _ZSH_CD_CLEAN_ALIAS=$local_aliases
+            export _ZSH_CD_CLEAN_PARAM=$local_parameters
         }
 
         # source the local env script
         source "$cd_functions_script"
 
-        # print what was loaded
-        print_sourced
-
         # run the enter hook
         enter_hook
 
+        # print what was loaded
+        print_sourced
     fi
 }
 
@@ -282,11 +282,17 @@ cleanup_cd_functions_hook() {
             echo "Unloading local config .."
 
             source "$cd_functions_script"
+
             exit_hook
 
+            [[ ! -z $_ZSH_CD_CLEAN_FUNC ]] && unset -f ${(@s: :)_ZSH_CD_CLEAN_FUNC}
+            [[ ! -z $_ZSH_CD_CLEAN_ALIAS ]] && unalias ${(@s: :)_ZSH_CD_CLEAN_ALIAS}
+            [[ ! -z $_ZSH_CD_CLEAN_PARAM ]] && unset ${(@s: :)_ZSH_CD_CLEAN_PARAM}
+
+            unset _ZSH_CD_CLEAN_FUNC _ZSH_CD_CLEAN_ALIAS _ZSH_CD_CLEAN_PARAM
+
             # cleanup own functions
-            unset -f enter_hook
-            unset -f exit_hook
+            unset -f enter_hook exit_hook
         fi
 
         # Update the previous directory
